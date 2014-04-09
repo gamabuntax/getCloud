@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$username = trim($_POST['username']);
 		$password = trim($_POST['password']);
 		
-		require('./mysql_connect.inc.php');
+		require('./includes/mysql_connect.inc.php');
 		
 	    //retrieve username
 		$q = "SELECT Username FROM USERS WHERE Username ='$username' AND Password = MD5('$password')";
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			header("Location:inbox.php");
 		}
 		else {
-			echo '<p class="error">The user name and password entered do not match</p>';
+			echo '<p class="error text-center">The user name and password entered do not match</p>';
 		}
 		mysqli_close($link);
 	}
@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" class="form-control" name="username" placeholder="Username">
         <input type="password" class="form-control" name = "password" placeholder="Password">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+      </form> <br>
       <p class="text-center">Dont have an account? <a href = "./register.php">Register here</a></p>
 
 <?php
-include ('./includes/footer.inc.php');
+require('./includes/footer.inc.php');
 ?>

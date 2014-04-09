@@ -1,0 +1,9 @@
+CREATE TABLE USERS(FullName VARCHAR(50) not null, Username VARCHAR(30) not null primary key, Password CHAR(32) not null);
+
+CREATE TABLE 
+
+CREATE TABLE PHOTOS(PhotoID BIGINT unsigned not null auto_increment primary key, PhotoName VARCHAR(50) not null, Caption VARCHAR(50) not null, PhotoData LONGBLOB not null, Username VARCHAR(30) not null, CONSTRAINT uniq UNIQUE(PhotoName, Username), FOREIGN KEY(Username) REFERENCES USERS(Username));
+
+
+SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE '%lake%' OR Caption LIKE '%purple%';
+

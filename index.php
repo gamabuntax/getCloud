@@ -1,6 +1,9 @@
 <?php 
 $page_title = 'Henry Le | About Me';
-include ('./includes/header.inc.php');
-include ('./includes/footer.inc.php');
-		
+require('./includes/header.inc.php');
+
+
+
+
+require('./includes/footer.inc.php');
 ?>

@@ -5,11 +5,14 @@ body {
   background-color: #eee;
 }
 
+.main {
+  margin-top: 40px;
+}
 /* sign-in form */
 
 .form-signin {
   max-width: 330px;
-  padding: 15px;
+  
   margin: 0 auto;
 }
 .form-signin .form-signin-heading,
@@ -40,4 +43,10 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+
+.error {
+  color: red;
+  text-align: center;
 }
