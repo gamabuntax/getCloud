@@ -38,8 +38,10 @@ session_start();
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Project name</a>
+          
         </div>
         <div class="navbar-collapse collapse">
+   
           <ul class="nav navbar-nav pull-right">
             <li <?php if ($currentPage == 'index.php') { echo 'class="active"';} ?>><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
