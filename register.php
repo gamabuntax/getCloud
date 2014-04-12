@@ -7,26 +7,32 @@ require('./includes/header.inc.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	//minimum form validation
-	if (!empty($_POST['fullname']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+	if (!empty($_POST['fullname']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['password_c'])) {
 		$fullname = trim($_POST['fullname']);
 		$username = trim($_POST['username']);
 		$password = trim($_POST['password']);
-		
-		//connect to the db
-		require('./includes/mysql_connect.inc.php');
+		$password_c = trim($_POST['password_c']);
+
+		if (strcmp($password,$password_c) == 0) {
+			//connect to the db
+			require('./includes/mysql_connect.inc.php');
 	    
-        //makeing the query
-        $q = "INSERT INTO USERS(FullName, Username, Password) VALUES('$fullname','$username', MD5('$password'))";
+        	//makeing the query
+        	$q = "INSERT INTO USERS(FullName, Username, Password) VALUES('$fullname','$username', MD5('$password'))";
         
-        $result = mysqli_query($link, $q);
-        if ($result) {
-			echo '<p class = "error"> Register successfully!!</p>';
-		}
+        	$result = mysqli_query($link, $q);
+        	if ($result) {
+				echo '<p class = "error"> Register successfully!!</p>';
+			}
 		
-		else {
-			echo '<p class = "error"> Username is already taken!</p>';
-		}
-        mysqli_close($link);		
+			else {
+				echo '<p class = "error"> Username is already taken!</p>';
+			}
+        	mysqli_close($link);
+        }
+        else {
+        	echo '<p class="error">Password confirmation does not match password </p>';
+        }		
 	} 
 	
 	else {

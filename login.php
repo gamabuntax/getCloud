@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//run the query
 		$result = mysqli_query($link,$q);
 		if (mysqli_num_rows($result) == 1) {
-			$_SESSION['userName'] = mysqli_result($result, 0, "Username");
+			$_SESSION['userName'] = $username;
 			mysqli_close($link);
-			header("Location:inbox.php");
+			header("Location:index.php");
 		}
 		else {
 			echo '<p class="error text-center">The user name and password entered do not match</p>';

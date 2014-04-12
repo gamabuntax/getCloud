@@ -2,7 +2,7 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: white;
 }
 
 .main {
@@ -50,3 +50,30 @@ body {
   color: red;
   text-align: center;
 }
+
+/* Sidebar navigation */
+#sideregion {
+  float: left;
+  width: 200px;
+
+}
+
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a {
+  color: #fff;
+  background-color: #428bca;
+}
+
+#mainregion{
+
+  margin-left: 250px;
+}
+

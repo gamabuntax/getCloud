@@ -13,7 +13,11 @@ require('./includes/sideregion.inc.php');
 ?>
 
 <div id="mainregion">
-<p>This is a test</p>
+<h2>Compose Message</h2>
+
+
+
+
 </div>
 
 
