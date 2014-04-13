@@ -9,5 +9,18 @@
     <li><a href="#">Sent Mail</a></li>
     <li><a href="#">My Files</a></li>
     <li><a href="#">My Clubs</a></li>
-  </ul>        
+  </ul>
+
+  <form name="logoutForm" action= "" method="post">
+	<input type="submit" name = "logout" value="Log out">
+	</form>
+
+<?php
+	if (isset($_POST['logout'])) {
+		unset($_SESSION['userName']);
+		session_destroy();
+		header("Location:login.php");
+	}
+?>
+
 </div>

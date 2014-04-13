@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<form class="form-compose" role="form" action="register.php" method="post">
+<form class="form-signin" role="form" action="register.php" method="post">
         <h2 class="form-signin-heading">Please register</h2>
         <label> Name </label> <br>
         <input type="text" class="form-control" name="fullname" placeholder="Full name">
