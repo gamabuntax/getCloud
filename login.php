@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (mysqli_num_rows($result) == 1) {
 			$_SESSION['userName'] = $username;
 			mysqli_close($link);
-			header("Location:index.php");
+			header("Location:inbox.php");
 		}
 		else {
 			echo '<p class="error text-center">The user name and password entered do not match</p>';

@@ -12,7 +12,7 @@
   </ul>
 
   <form name="logoutForm" action= "" method="post">
-	<input type="submit" name = "logout" value="Log out">
+	<input type="submit" name = "logout" class="btn btn-default" value="Log out">
 	</form>
 
 <?php

@@ -1,5 +1,5 @@
 <?php 
-$page_title = 'getCloud | index';
+$page_title = 'getCloud | compose';
 require('./includes/header.inc.php');
 
 if (isset($_SESSION['userName'])) {
