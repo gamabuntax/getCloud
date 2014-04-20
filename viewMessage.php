@@ -53,15 +53,10 @@ require('./includes/sideregion.inc.php');
       echo '<a href="outbox.php">Back</a>';
    }
 
-
    mysqli_close($link);
 
  ?> 
-
-
 </div>
-
-
 
 <?php
 require('./includes/footer.inc.php');

@@ -32,6 +32,10 @@ require('./includes/sideregion.inc.php');
 				///////send message////////
 				$q = "INSERT INTO MAILBOX (Subject, MsgTime, MsgText, Sender, Receiver,Status) VALUES ('$subject', NOW(), '$message', '$userName', '$receiverID', '1')";
 				$result = mysqli_query($link,$q);
+			
+				//sleep(3);//seconds to wait..
+				
+				//header("Location:inbox.php");
 				echo '<p class="success">Message has been sent succesfully!</p>';
 			}
 			else {

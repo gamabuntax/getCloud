@@ -88,6 +88,13 @@ button {
     background:none!important;
      border:none; 
      padding:0!important;
-   
-    
+     display: block; 
+     width: 100%;
+     text-align: left;
 }
+
+.message-header {
+  color: #428bca;
+  background-color: #428bca;
+}
+

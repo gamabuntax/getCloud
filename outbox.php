@@ -15,17 +15,17 @@ require('./includes/sideregion.inc.php');
 
 <div id="mainregion">
       <table class="table table-striped table-condensed" width="100%">
-                <tr>
+                <tr class="message-header">
                     <td width="20%">
                         <strong>Sender</strong>
                     </td>
-                    <td width="40%">
+                    <td width="45%">
                         <strong>Subject</strong>
                     </td>
                     <td width="20%">
                         <strong>Date</strong>
                     </td>
-                    <td width="20%">
+                    <td width="15%">
                         <strong>Action</strong>
                     </td>
                 </tr>
@@ -36,34 +36,37 @@ require('./includes/sideregion.inc.php');
 		$result = mysqli_query($link,$q);
 		if(mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
-				if ($row[4] <2) {
-					echo '<tr class="">                  	       
-	                    <td width="20%"><strong>'.$row[1].'</strong></td>
-	                    <td width="40%"><form action="viewMessage.php" method="post">
+				echo '<tr>                  	       
+	                    <td width="20%"><form action="viewMessage.php" method="post">
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
-	                    <button type="submit"><strong>' . $row[2]. '</strong></button></form></td>
-	                    <td width="20%"><strong>' . $row[3]. '</strong></td>
-	                    <td width="20%"> delete' . '</td>
-	                    </tr>';
-					
-				}
-				else {
-					echo '<tr>                  	       
-	                    <td width="20%">'.$row[1].'</td>
-	                    <td width="40%"><form action="viewMessage.php" method="post">
+	                    <button type="submit">' . $row[1]. '</button></form></td>
+
+	                    <td width="45%"><form action="viewMessage.php" method="post">
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
 	                    <button type="submit">' . $row[2]. '</button></form></td>
-	                    <td width="20%">' . $row[3]. '</td>
-	                    <td width="20%"> delete' . '</td>
-	                    </tr>';
-	                }
+	                    
+	                    <td width="20%"><form action="viewMessage.php" method="post">
+	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
+	                    <button type="submit">' . $row[3]. '</button></form></td>
 
+	                    <td width="15%"><form action="outbox.php" method="post">
+	                    <input type="hidden" name="delete"  value="'.$row[0].'">	
+	                    <button type="submit" class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
+	              		</tr>';
 			}
 		}
 
 		else {
-			echo '<tr ><td class="error">You dont have any message.</td></tr>';	
+			echo '<tr><p class="error">You dont have any message.</p></tr>';	
 		}
+
+		if(isset($_POST['delete'])){
+			$id = $_POST['delete'];
+			$query = "UPDATE MAILBOX SET Status = CASE Status WHEN 1 THEN 0 WHEN 2 THEN 6 ELSE 5 END WHERE MessageID='$id'";
+					
+        	mysqli_query($link, $query);
+        	header("Location:outbox.php"); 
+        }
 		mysqli_close($link);
      ?>
     </table>
