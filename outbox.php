@@ -1,10 +1,10 @@
 <?php 
-$page_title = 'getCloud | Inbox';
+$page_title = 'getCloud | Outbox';
 require('./includes/header.inc.php');
 
 if (isset($_SESSION['userName'])) {
 	$userName = $_SESSION['userName'];
-	$_SESSION['msgType'] = 0;
+	$_SESSION['msgType'] = 1;
 }
 else {
 	header("Location:register.php");
@@ -14,7 +14,7 @@ require('./includes/sideregion.inc.php');
 ?>
 
 <div id="mainregion">
-     <table class="table table-striped table-condensed" width="100%">
+      <table class="table table-striped table-condensed" width="100%">
                 <tr>
                     <td width="20%">
                         <strong>Sender</strong>
@@ -29,11 +29,10 @@ require('./includes/sideregion.inc.php');
                         <strong>Action</strong>
                     </td>
                 </tr>
-
      <?php
      	require('./includes/mysql_connect.inc.php');
 		
-		$q = "SELECT MessageID, Sender, Subject, MsgTime, Status FROM MAILBOX WHERE Receiver = '$userName' AND Status IN (0,1,2,3,6) ORDER BY MsgTime DESC";
+		$q = "SELECT MessageID, Receiver, Subject, MsgTime, Status FROM MAILBOX WHERE Sender = '$userName' AND Status IN (1,2,4) ORDER BY MsgTime DESC";
 		$result = mysqli_query($link,$q);
 		if(mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
@@ -44,8 +43,8 @@ require('./includes/sideregion.inc.php');
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
 	                    <button type="submit"><strong>' . $row[2]. '</strong></button></form></td>
 	                    <td width="20%"><strong>' . $row[3]. '</strong></td>
-	                    <td width="20%"> <button class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
-	              		</tr>';
+	                    <td width="20%"> delete' . '</td>
+	                    </tr>';
 					
 				}
 				else {
@@ -55,8 +54,8 @@ require('./includes/sideregion.inc.php');
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
 	                    <button type="submit">' . $row[2]. '</button></form></td>
 	                    <td width="20%">' . $row[3]. '</td>
-	                    <td width="20%"> <button class="btn btn-xs"> <img src="./includes/delete.png" /></button></td>
-	              		</tr>';
+	                    <td width="20%"> delete' . '</td>
+	                    </tr>';
 	                }
 
 			}
@@ -69,9 +68,6 @@ require('./includes/sideregion.inc.php');
      ?>
     </table>
 </div>
-
-
-
 
 
 
