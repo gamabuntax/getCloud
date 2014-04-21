@@ -81,3 +81,11 @@ body {
   max-width: 400px;
   float:left;
 }
+
+.imgbtn{
+    background:none!important;
+    border:none; 
+    padding:1!important;
+    /*border is optional*/
+    border-bottom:0px solid #444; 
+}

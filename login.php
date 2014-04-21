@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$result = mysqli_query($link,$q);
 		if (mysqli_num_rows($result) == 1) {
 			$_SESSION['userName'] = $username;
+			$_SESSION['uploadStatus'] = "";
 			mysqli_close($link);
 			header("Location:index.php");
 		}
