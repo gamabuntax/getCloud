@@ -5,6 +5,12 @@ require('./includes/header.inc.php');
 
 <?php
 
+if (isset($_SESSION['userName'])) {
+	header("Location:inbox.php");
+}
+
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//minimum form validation
 	if (!empty($_POST['username']) && !empty($_POST['password'])) {
@@ -22,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$_SESSION['userName'] = $username;
 			$_SESSION['uploadStatus'] = "";
 			mysqli_close($link);
-			header("Location:index.php");
+			header("Location:inbox.php");
 		}
 		else {
 			echo '<p class="error text-center">The user name and password entered do not match</p>';
