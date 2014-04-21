@@ -52,6 +52,7 @@ session_start();
               echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' .$_SESSION['userName'] . ' <b class="caret"></b></a>';
               echo '<ul class="dropdown-menu">';
               echo '<li><a href="./inbox.php">Inbox</a></li>';
+              echo '<li><a href="./change_password.php">Change password?</a></li>';
               echo ' <li class="divider"></li>';
               echo '<li><a href="./includes/logout.php">Logout</a></li>';
               echo '</ul>';
