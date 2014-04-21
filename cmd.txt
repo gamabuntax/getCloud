@@ -19,3 +19,12 @@ ALTER TABLE USERS ADD COLUMN Status INT DEFAULT 0;
 
 //File Status
 
+
+//email status system
+Sender Receiver (unread)		1
+Sender Receiver (read)			2
+Sender !Receiver (unread)		3
+Sender !Receiver (read)			4
+!Sender Receiver (unread)		5
+!Sender Receiver (read)			6
+!Sender !Receiver				7

@@ -33,11 +33,11 @@ require('./includes/sideregion.inc.php');
      <?php
      	require('./includes/mysql_connect.inc.php');
 		
-		$q = "SELECT MessageID, Sender, Subject, MsgTime, Status FROM MAILBOX WHERE Receiver = '$userName' AND Status IN (0,1,2,3,6) ORDER BY MsgTime DESC";
+		$q = "SELECT MessageID, Sender, Subject, MsgTime, Status FROM MAILBOX WHERE Receiver = '$userName' AND Status IN (1,2,5,6) ORDER BY MsgTime DESC";
 		$result = mysqli_query($link,$q);
 		if(mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
-				if ($row[4] <2) {
+				if ($row[4] == 1 || $row[4] == 5) {
 					echo '<tr class="">                  	       
 	                    <td width="20%"><form action="viewMessage.php" method="post">
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
@@ -85,7 +85,7 @@ require('./includes/sideregion.inc.php');
 
 		if(isset($_POST['delete'])){
 			$id = $_POST['delete'];
-			$query = "UPDATE MAILBOX SET Status = CASE Status WHEN 0 THEN 5 WHEN 3 THEN 5 WHEN 6 THEN 5 ELSE 4 END WHERE MessageID='$id'";
+			$query = "UPDATE MAILBOX SET Status = CASE Status WHEN 1 THEN 3 WHEN 2 THEN 4 WHEN 5 THEN 7 WHEN 6 THEN 7 END WHERE MessageID='$id'";
         	mysqli_query($link, $query);
         	header("Location:inbox.php"); 
         }

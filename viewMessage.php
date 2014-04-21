@@ -35,15 +35,17 @@ require('./includes/sideregion.inc.php');
    mysqli_free_result($result);
    //inbox message
    if ($msgType == 0) {
-      if ($row[3] == 0) {
+      if ($row[3] == 1) {
 
-         $q = "UPDATE MAILBOX SET Status = '3' WHERE MessageID = '$id'";
-         $result = mysqli_query($link, $q);
-      }
-      else {
          $q = "UPDATE MAILBOX SET Status = '2' WHERE MessageID = '$id'";
          $result = mysqli_query($link, $q);
       }
+
+      if ($row[3] == 5) {
+         $q = "UPDATE MAILBOX SET Status = '6' WHERE MessageID = '$id'";
+         $result = mysqli_query($link, $q);
+      }
+
 
       echo '<a href="inbox.php">Back</a>';
    }

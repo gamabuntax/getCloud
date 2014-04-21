@@ -32,7 +32,7 @@ require('./includes/sideregion.inc.php');
      <?php
      	require('./includes/mysql_connect.inc.php');
 		
-		$q = "SELECT MessageID, Receiver, Subject, MsgTime, Status FROM MAILBOX WHERE Sender = '$userName' AND Status IN (1,2,4) ORDER BY MsgTime DESC";
+		$q = "SELECT MessageID, Receiver, Subject, MsgTime, Status FROM MAILBOX WHERE Sender = '$userName' AND Status IN (1,2,3,4) ORDER BY MsgTime DESC";
 		$result = mysqli_query($link,$q);
 		if(mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
@@ -62,7 +62,7 @@ require('./includes/sideregion.inc.php');
 
 		if(isset($_POST['delete'])){
 			$id = $_POST['delete'];
-			$query = "UPDATE MAILBOX SET Status = CASE Status WHEN 1 THEN 0 WHEN 2 THEN 6 ELSE 5 END WHERE MessageID='$id'";
+			$query = "UPDATE MAILBOX SET Status = CASE Status WHEN 1 THEN 5 WHEN 2 THEN 6 WHEN 3 THEN 7 WHEN 4 THEN 7 END WHERE MessageID='$id'";
 					
         	mysqli_query($link, $query);
         	header("Location:outbox.php"); 

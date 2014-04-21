@@ -26,7 +26,7 @@ require('./includes/sideregion.inc.php');
 			$result = mysqli_query($link,$q);
 
 			while ($admin = mysqli_fetch_array($result, MYSQL_NUM)) {
-				$q = "INSERT INTO MAILBOX (Subject, MsgTime, MsgText, Sender, Receiver,Status) VALUES ('$subject', NOW(), '$description', '$userName', '$admin[0]', '1')";
+				$q = "INSERT INTO MAILBOX (Subject, MsgTime, MsgText, Sender, Receiver,Status) VALUES ('$subject', NOW(), '$description', '$userName', '$admin[0]', '5')";
 				$result_message = mysqli_query($link,$q);
 			}
 
