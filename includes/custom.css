@@ -98,3 +98,11 @@ body {
   background-color: #428bca;
 }
 
+.imgbtn{
+    background:none!important;
+    border:none; 
+    padding:1!important;
+    /*border is optional*/
+    border-bottom:0px solid #444; 
+}
+

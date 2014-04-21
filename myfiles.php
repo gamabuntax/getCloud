@@ -39,7 +39,7 @@
 	                      	  <input type='hidden' name='caption'  value='".$cap."'/>
 	                          <input type='hidden' name='name'  value='".$name."'/>
 		                      <button type='submit' class='imgbtn'>
-		                      	<img src='pdfthumb.png' height='' width='50' alt='".$cap."'/>
+		                      	<img src='./includes/pdfthumb.png' height='' width='50' alt='".$cap."'/>
 		                      </button>
 		                  </form>
 	                  </td>
