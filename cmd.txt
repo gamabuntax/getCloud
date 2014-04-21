@@ -11,3 +11,8 @@ CREATE TABLE FILE(FileID BIGINT unsigned not null auto_increment primary key, Fi
 CREATE TABLE SHAREDFILES(FileID BIGINT unsigned not null, ClubID BIGINT unsigned not null, Status INT not null, CONSTRAINT uniq UNIQUE(FileID, ClubID), FOREIGN KEY(FileID) REFERENCES FILE(FileID), FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB;
 
 SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE '%lake%' OR Caption LIKE '%purple%';
+
+
+
+//add status to the USERS table
+ALTER TABLE USERS ADD COLUMN Status INT DEFAULT 0;
