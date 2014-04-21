@@ -41,19 +41,19 @@ require('./includes/sideregion.inc.php');
 					echo '<tr class="">                  	       
 	                    <td width="20%"><form action="viewMessage.php" method="post">
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
-	                    <button type="submit"><strong>' . $row[1]. '</strong></button></form></td>
+	                    <button class="button-link" type="submit"><strong>' . $row[1]. '</strong></button></form></td>
 
 	                    <td width="45%"><form action="viewMessage.php" method="post">
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
-	                    <button type="submit"><strong>' . $row[2]. '</strong></button></form></td>
+	                    <button class="button-link" type="submit"><strong>' . $row[2]. '</strong></button></form></td>
 
 	                    <td width="20%"><form action="viewMessage.php" method="post">
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
-	                    <button type="submit"><strong>' . $row[3]. '</strong></button></form></td>
+	                    <button  class="button-link" type="submit"><strong>' . $row[3]. '</strong></button></form></td>
 
 	                    <td width="15%"><form action="inbox.php" method="post">
 	                    <input type="hidden" name="delete"  value="'.$row[0].'">	
-	                    <button type="submit" class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
+	                    <button class="button-link" type="submit" class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
 	              		</tr>';
 				}
 
@@ -62,19 +62,19 @@ require('./includes/sideregion.inc.php');
 	                    
 	                    <td width="20%"><form action="viewMessage.php" method="post">
 	                   <input type="hidden" name="msgID"  value="'.$row[0].'">	
-	                    <button type="submit">' . $row[1]. '</button></form></td>
+	                    <button class="button-link" type="submit">' . $row[1]. '</button></form></td>
 
 	                    <td width="45%"><form action="viewMessage.php" method="post">
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
-	                    <button type="submit">' . $row[2]. '</button></form></td>
+	                    <button class="button-link" type="submit">' . $row[2]. '</button></form></td>
 	                    
 	                    <td width="20%"><form action="viewMessage.php" method="post">
 	                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
-	                    <button type="submit">' . $row[3]. '</button></form></td>
+	                    <button class="button-link" type="submit">' . $row[3]. '</button></form></td>
 
 	                    <td width="15%"><form action="inbox.php" method="post">
 	                    <input type="hidden" name="delete"  value="'.$row[0].'">	
-	                  	<button type="submit" class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
+	                  	<button class="button-link" type="submit" class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
 	              		</tr>';
 	                }
 			}

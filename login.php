@@ -5,6 +5,12 @@ require('./includes/header.inc.php');
 
 <?php
 
+if (isset($_SESSION['userName'])) {
+	header("Location:inbox.php");
+}
+
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//minimum form validation
 	if (!empty($_POST['username']) && !empty($_POST['password'])) {

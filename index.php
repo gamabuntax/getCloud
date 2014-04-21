@@ -4,18 +4,12 @@ require('./includes/header.inc.php');
 
 if (isset($_SESSION['userName'])) {
 	$userName = $_SESSION['userName'];
+	header("Location:inbox.php");
 }
 else {
 	header("Location:register.php");
 }
-
-require('./includes/sideregion.inc.php');
 ?>
-
-<div id="mainregion">
-<p>This is a test</p>
-</div>
-
 
 
 <?php

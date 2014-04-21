@@ -43,19 +43,21 @@ session_start();
    
           <ul class="nav navbar-nav pull-right">
             <li <?php if ($currentPage == 'index.php') { echo 'class="active"';} ?>><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="./login.php">Log in</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
+            <?php
+            if (!isset($_SESSION['userName'])) {
+                echo'<li><a href="./login.php">Log in</a></li>';
+            }
+            else {
+            echo '<li class="dropdown">';
+              echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' .$_SESSION['userName'] . ' <b class="caret"></b></a>';
+              echo '<ul class="dropdown-menu">';
+              echo '<li><a href="./inbox.php">Inbox</a></li>';
+              echo ' <li class="divider"></li>';
+              echo '<li><a href="./includes/logout.php">Logout</a></li>';
+              echo '</ul>';
+            echo '</li>';
+            }
+            ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -11,16 +11,10 @@
     <li><a href="#">My Clubs</a></li>
   </ul>
 
-  <form name="logoutForm" action= "" method="post">
+  <form name="logoutForm" action= "./includes/logout.php" method="post">
 	<input type="submit" name = "logout" class="btn btn-default" value="Log out">
 	</form>
 
-<?php
-	if (isset($_POST['logout'])) {
-		unset($_SESSION['userName']);
-		session_destroy();
-		header("Location:login.php");
-	}
-?>
+
 
 </div>
