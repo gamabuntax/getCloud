@@ -30,7 +30,7 @@
 
     function upload($file){
         require('../includes/mysql_connect.inc.php');
-        $file = mysqli_real_escape_string($link, $file);
+        $escapedfile = mysqli_real_escape_string($link, $file);
         $name = $_POST['name'];
         $caption = $_POST['caption'];
         $user = $_SESSION['userName'];
@@ -39,17 +39,42 @@
         $status = 0;
 
         $query = "INSERT INTO FILE(Filename, Caption, Data, type, Status, Owner) 
-                        VALUES('$name', '$caption', '$file', '$type', '$status', '$user')"; 
+                        VALUES('$name', '$caption', '$escapedfile', '$type', '$status', '$user')"; 
         $result = mysqli_query( $link, $query);
-        mysqli_close($link);
-
-        if ($result){ 
-            $_SESSION['uploadStatus'] = "<b style='color:green;'>File uploaded!</b>";
-            header('Location: ../myfiles.php');
-        }else{
-            $_SESSION['uploadStatus'] = "<b style='color:red;'>Something wrong. File not uploaded.<b>";
-            header('Location: ../myfiles.php');
+        if ($result){
+           makethumbnail($link, $file, $type);  
         }
+        mysqli_close($link);
+        return $result;
+    }
+
+    function makethumbnail($link, $file, $type){ 
+        /*
+        //add the desired extension to the thumbnail
+        $thumb = mysqli_insert_id().".jpg";
+        $thumbDirectory = "../thumbnails";
+ 
+        //execute imageMagick's 'convert', setting the color space to RGB and size to 200px wide
+        exec("convert \"{$file}[0]\" -colorspace RGB -geometry 200 $thumbDirectory $thumb");
+        */
+
+         $size = 0.40; 
+
+         // Setting the resize parameters
+         list($width, $height) = getimagesize($file); 
+         $modwidth = $width * $size; 
+         $modheight = $height * $size; 
+
+         // Creating the Canvas 
+         $tmp_img = imagecreatetruecolor($modwidth, $modheight); 
+
+         $source = imagecreatefromjpeg($file); 
+
+         echo "resizing...";
+         // Resizing our image to fit the canvas 
+         $image = imagecopyresized($thumb, $source, 0, 0, 0, 0, $modwidth, $modheight, $width, $height); 
+         imagejpeg($tmp_img, "../thumbnails");
+
     }
 ?>
 
@@ -61,7 +86,13 @@
     }
     elseif (isValidFile()){
         $file = file_get_contents($_FILES['file']['tmp_name']);
-        upload($file);        
+        if (upload($file)){ 
+            $_SESSION['uploadStatus'] = "<b style='color:green;'>File uploaded!</b>";
+            header('Location: ../myfiles.php');
+        }else{
+            $_SESSION['uploadStatus'] = "<b style='color:red;'>Something wrong. File not uploaded.</b>";
+            header('Location: ../myfiles.php');
+        } 
     }
     else {
         $_SESSION['uploadStatus'] = "<b style='color:red;' align='center'>

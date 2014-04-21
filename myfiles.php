@@ -12,65 +12,71 @@
 ?>
 
 <?php
-	// TODO
-	function displayFiles(){
-        require('./includes/mysql_connect.inc.php');
+
+	function is_shared($fileID){
+
         $user = $_SESSION['userName'];
         $query = "SELECT * FROM FILE WHERE Owner='$user'";
         $result = mysqli_query($link, $query)or die("Error:".mysqli_error($link));
         mysqli_close($link);
 
-        echo "<table width='100%'>
-        		  <tr>
-        		  <td width='10%'></td>
-        		  <td width='20%'><b>Name</b></td>
-        		  <td width='70%'><b>Caption</b></td>
-        		  </tr>";
+
+	}
+
+	function displayFiles(){
+        require('./includes/mysql_connect.inc.php');
+        $user = $_SESSION['userName'];
+        $query = "SELECT * FROM FILE WHERE Owner='$user'";
+        $result = mysqli_query($link, $query)or die("Error:".mysqli_error($link));
+        
+
         while($row = mysqli_fetch_array($result)){
       		$cap = $row['Caption'];
 	        $name = $row['Filename'];
+	        $abrvname = "";
+	        $i = 0;
+	        while($i < strlen($name) && $i < 10){
+	        	$abrvname = $abrvname.$name[$i];
+	        	$i++;
+	        }
+	        $abrvname = $abrvname."...";
 
         	if ($row['Type'] == "application/pdf"){
         		$file = base64_encode($row['Data']);
-				echo "<tr>
-					  <td hight='50' width='10%'>
+				echo "<div style='float:left;'>
 						  <form method='post' action='./modules/showpdf.php' target='_blank'>
 						  	  <input type='hidden' name='pdf' value='".$file."'/>
 	                      	  <input type='hidden' name='caption'  value='".$cap."'/>
 	                          <input type='hidden' name='name'  value='".$name."'/>
 		                      <button type='submit' class='imgbtn'>
-		                      	<img src='./includes/pdfthumb.png' height='' width='50' alt='".$cap."'/>
+		                      	<img src='./thumbnails/pdfthumb.png' height='100' width='' alt='".$cap."'/>
 		                      </button>
 		                  </form>
-	                  </td>
-					  <td width='20%'>".$name."</td>
-					  <td width='70%'>".$cap."</td>
-					  </tr>";
+		                 <p align='center'> ".$abrvname."</p>
+	                  </div>";
         	}
         	else{
 	            $pic = base64_encode($row['Data']);
 	            
-	            echo "<tr>
-	            	  <td hight='50' width='10%'>
+	            echo "<div style='float:left;'>
 	            	  <form method='post' action='./modules/showimg.php' target='_blank'>
 	                      <input type='hidden' name='picture'  value='".$pic."'/>
 	                      <input type='hidden' name='caption'  value='".$cap."'/>
 	                      <input type='hidden' name='name'  value='".$name."'/>
 	                      <button type='submit' class='imgbtn' target='_blank'>
 	                      	<img src='data:image;base64,".$pic."'
-	                      	height='100%' width='50' alt='".$row['Caption']."'/>
+	                      	height='100' width='' alt='".$row['Caption']."'/>
 	                      </button>
-	                  </form></td>
-	                  <td width='20%'>".$name."</td>
-	                  <td width='70%'>".$cap."</td>
-	                  </tr>";   
+	                  </form>";
+	            share();
+	            echo "</div>";
 	        }          
-       }
-       echo "</table>";      
+       } 
+       mysqli_close($link);   
     }
 
     function uploadStatus(){
-        echo $_SESSION['uploadStatus'];
+        echo $_SESSION['uploadStatus']."<br>";
         $_SESSION['uploadStatus'] = "";
     }
 ?>
