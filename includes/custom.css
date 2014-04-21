@@ -84,15 +84,6 @@ body {
   float:left;
 }
 
-<<<<<<< HEAD
-.imgbtn{
-    background:none!important;
-    border:none; 
-    padding:1!important;
-    /*border is optional*/
-    border-bottom:0px solid #444; 
-}
-=======
 .button-link {
     background:none!important;
      border:none; 
@@ -107,4 +98,3 @@ body {
   background-color: #428bca;
 }
 
->>>>>>> 8e4025a703471aa8a2a27a761150fc7d526195c8
