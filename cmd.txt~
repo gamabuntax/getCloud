@@ -4,9 +4,9 @@ CREATE TABLE MAILBOX( MessageID BIGINT unsigned not null auto_increment primary 
 
 CREATE TABLE CLUB(ClubID BIGINT unsigned not null auto_increment primary key, ClubName VARCHAR(50) not null, Description TEXT not null, ProfileImage LONGBLOB)ENGINE=InnoDB;
 
-CREATE TABLE MEMBER(Username VARCHAR(30) not null, ClubID BIGINT not null, Privilage INT not null, Status INT not null, CONSTRAINT uniq UNIQUE(Username, ClubID), FOREIGN KEY(Username) REFERENCES USERS(Username), FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB;
+CREATE TABLE MEMBER(Username VARCHAR(30) not null, ClubID BIGINT not null, Privilage INT not null, Status INT not null, CONSTRAINT uniq UNIQUE(Username, ClubID), FOREIGN KEY(Username) REFERENCES USERS(Username), FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB; 
 
-CREATE TABLE FILE(FileID BIGINT unsigned not null auto_increment primary key, Filename VARCHAR(30) not null, Caption VARCHAR(255) not null, Data LONGBLOB not null, Type CHAR(5) not null, Status INT not null, Owner VARCHAR(30) not null, FOREIGN KEY(Owner) REFERENCES USERS(Username))ENGINE=InnoDB;
+CREATE TABLE FILE(FileID BIGINT unsigned not null auto_increment primary key, Filename VARCHAR(30) not null, Caption VARCHAR(255) not null, Data LONGBLOB not null, Type VARCHAR(32) not null, Status INT not null, Owner VARCHAR(30) not null, FOREIGN KEY(Owner) REFERENCES USERS(Username))ENGINE=InnoDB;
 
 CREATE TABLE SHAREDFILES(FileID BIGINT unsigned not null, ClubID BIGINT unsigned not null, Status INT not null, CONSTRAINT uniq UNIQUE(FileID, ClubID), FOREIGN KEY(FileID) REFERENCES FILE(FileID), FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB;
 
