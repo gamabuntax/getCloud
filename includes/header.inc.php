@@ -12,59 +12,83 @@ session_start();
     <meta name="author" content="">
 
     <!-- Note there is no responsive meta tag here -->
+
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
     <title><?php echo $page_title; ?></title>
     <?php $currentPage = basename($_SERVER['SCRIPT_FILENAME']); ?>
 
     <!-- Bootstrap core CSS -->
-    <link href="./includes/bootstrap.min.css" rel="stylesheet">
+     <link href="./includes/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./includes/custom.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+     <link href="./includes/custom.css" rel="stylesheet">
   </head>
 
   <body>
 
     <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <a class="navbar-brand" href="./index.php">GETCLOUD</a>
         </div>
         <div class="navbar-collapse collapse">
-   
-          <ul class="nav navbar-nav pull-right">
-            <li <?php if ($currentPage == 'index.php') { echo 'class="active"';} ?>><a href="#">Home</a></li>
-            <?php
-            if (!isset($_SESSION['userName'])) {
-                echo'<li><a href="./login.php">Log in</a></li>';
-            }
-            else {
-            echo '<li class="dropdown">';
-              echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' .$_SESSION['userName'] . ' <b class="caret"></b></a>';
-              echo '<ul class="dropdown-menu">';
-              echo '<li><a href="./inbox.php">Inbox</a></li>';
-              echo '<li><a href="./change_password.php">Change password?</a></li>';
-              echo ' <li class="divider"></li>';
-              echo '<li><a href="./includes/logout.php">Logout</a></li>';
-              echo '</ul>';
-            echo '</li>';
-            }
-            ?>
+           <?php if (isset($_SESSION['userName'])) { ?>
+          <ul class="nav navbar-nav">
+       <!-- message -->
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Message <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="./compose.php">Compose</a></li>
+                <li><a href="./inbox.php">Inbox</a></li>
+                <li><a href="./outbox.php">Outbox</a></li>
+              </ul>
+            </li>
+
+            <!-- club -->
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clubs <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="./club_request.php">Request for a club</a></li>
+                <li><a href="./myclubs.php">My clubs</a></li>
+              </ul>
+            </li>
+            <li <?php if ($currentPage == 'myfiles.php') { echo 'class="active"';} ?>><a href="./myfiles.php">My files</a></li>
+          </ul>
+
+          <!-- file -->
+
+          <?php } ?>
+
+          <ul class="nav navbar-nav navbar-right">
+             <!-- User -->
+
+          <?php if (isset($_SESSION['userName'])) { ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $_SESSION['userName']; ?>  <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="./change_password.php">Change password?</a></li>
+                <li class="divider"></li>
+                <li><a href="./includes/logout.php">Logout</a></li>
+              </ul>
+            </li>
+
+            <?php } else {?>
+            <li <?php if ($currentPage == 'register.php') { echo 'class="active"';} ?>><a href="./register.php">Register</a></li>
+            <li <?php if ($currentPage == 'login.php') { echo 'class="active"';} ?>><a href="./login.php">Login</a></li>
+            <?php } ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
     <div class="container">
-    <div class="main">
-
-
+  <div class="main">
+    

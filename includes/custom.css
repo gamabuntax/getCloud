@@ -53,12 +53,6 @@ body {
 .success {
   color: green;
 }
-/* Sidebar navigation */
-#sideregion {
-  float: left;
-  width: 200px;
-
-}
 
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
@@ -74,10 +68,6 @@ body {
   background-color: #428bca;
 }
 
-#mainregion{
-
-  margin-left: 250px;
-}
 
 .form-compose {
   max-width: 400px;
