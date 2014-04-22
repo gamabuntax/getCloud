@@ -16,3 +16,7 @@ SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE
 
 //add status to the USERS table
 ALTER TABLE USERS ADD COLUMN Status INT DEFAULT 0;
+
+//File Status
+
+

@@ -18,4 +18,7 @@ SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE
 ALTER TABLE USERS ADD COLUMN Status INT DEFAULT 0;
 
 //File Status
+0 = private
+1 = public
+
 

@@ -98,3 +98,15 @@ body {
   background-color: #428bca;
 }
 
+.imgbtn{
+    background:none!important;
+    border:none; 
+    padding:5px!important;
+    /*border is optional*/
+    border-bottom:0px solid #444; 
+}
+
+
+.clear-all {
+  clear: both;  
+}
