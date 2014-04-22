@@ -8,6 +8,7 @@
 	else {
 		header("Location:register.php");
 	}
+	require('./includes/sideregion.inc.php');
 ?>
 
 <?php
@@ -44,7 +45,7 @@
 	        	$abrvname = $abrvname."...";
 	        }
 
-        	if ($row['Type'] == "application/pdf"){ /*
+        	if ($row['Type'] == "application/pdf"){
 				echo "<div style='float:left;'>
 						 
 						  <form method='post' action='./modules/showpdf.php' target='_blank'>
@@ -57,7 +58,7 @@
 		                      </form>";
 		                         
 	            //displaySharebutton($row['Status'], $row['FileID']);
-	            echo "</div>"; */
+	            echo "</div>"; 
         	}
         	else{ 
 	            echo "<div style='float:left;'>
@@ -84,18 +85,14 @@
 ?>
 
 <div id="mainregion">
-
+	<b style='float:left;'>Upload:</b>
 	<form action="modules/uploadmanager.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" style="float:right;" required>
-        <input type="text" name="name" maxlength="30" placeholder="Name your file" style="float:right;" required>
-        <input type="text" name="caption" maxlength="100" placeholder="Add a caption" style="float:right;" required>
-        <input type="submit" value="Upload" class="btn btn-sm " style="float:right;" > 
+        <input type="file" name="file" style="float:left;" required>
+        <input type="text" name="name" maxlength="30" placeholder="Name your file" style="float:left;" required>
+        <input type="text" name="caption" maxlength="100" placeholder="Add a caption" style="float:left;" required>
+        <input type="submit" value="Upload" class="btn btn-sm btn-primary" > 
     </form>
-    <br>
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-        <li class="active" ><a href="myImages.php" data-toggle="tab">Image</a></li>
-        <li><a href="myImages.php" data-toggle="tab">PDF</a></li>
-    </ul>
+
     <?php 
     	uploadStatus(); 
     	displayFiles();

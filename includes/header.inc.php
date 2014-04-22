@@ -60,7 +60,7 @@ session_start();
                 <li><a href="./myclubs.php">My clubs</a></li>
               </ul>
             </li>
-            <li <?php if ($currentPage == 'myfiles.php') { echo 'class="active"';} ?>><a href="./myfiles.php">My files</a></li>
+            <li <?php if ($currentPage == 'myImages.php') { echo 'class="active"';} ?>><a href="./myImages.php">My files</a></li>
           </ul>
 
           <!-- file -->
