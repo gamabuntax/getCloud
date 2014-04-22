@@ -8,10 +8,9 @@ if (isset($_SESSION['userName'])) {
 else {
 	header("Location:index.php");
 }
-require('./includes/sideregion.inc.php');
 ?>
 
-<div id="mainregion">
+
 
 <?php
 	if (isset($_POST['send'])) {
@@ -23,25 +22,25 @@ require('./includes/sideregion.inc.php');
 				require('./includes/mysql_connect.inc.php');
 				$q = "UPDATE USERS SET Password = MD5('$password') WHERE Username ='$userName'";
 				$result = mysqli_query($link, $q);
-				echo '<p class="success"> You changed your password sucessfully</p>';
+				echo '<p class="success text-center"> You changed your password sucessfully</p>';
 			}
 			else {
-				echo '<p class="error">Password confirmation does not match password </p>';
+				echo '<p class="error text-center">Password confirmation does not match password </p>';
 			}
 		}
 		else {
-			echo '<p class="error">Please enter your new password and password confirmation </p>';
+			echo '<p class="error text-center">Please enter your new password and password confirmation </p>';
 		}
 	}
 
 ?>
 
-<h2>Change your password</h2>
+<h1 class ="text-center">Change your password</h1>
 
 <div>
-<form class="form-compose" role="form" action="change_password.php" method="post">
+<form class="form-signin" role="form" action="change_password.php" method="post">
 	<label> New password </label><br>
-	<input type="password" name="password" class="form-control" placeholder="New password"><br>
+	<input type="password" name="password" class="form-control" placeholder="New password">
 
 	<label> Password confirmation </label><br>
 	<input type="password" name="password_c" class="form-control" placeholder="Password confirmation"><br>
@@ -49,9 +48,8 @@ require('./includes/sideregion.inc.php');
 	<input type="reset" value="Reset"  class="btn btn-default">
 </form>
 </div>
-<div class="clear-all"><a href="./index.php">Back to main page </a></div>
+<div class="clear-all"><br><br><p class="text-center"><a href="./index.php">Back to main </a></p></div>
 
-</div>
 
 
 <?php

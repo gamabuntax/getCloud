@@ -2,7 +2,7 @@ CREATE TABLE USERS(FullName VARCHAR(50) not null, Username VARCHAR(30) not null 
 
 CREATE TABLE MAILBOX( MessageID BIGINT unsigned not null auto_increment primary key, Subject CHAR(100), MsgTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null , MsgText MEDIUMTEXT, Sender VARCHAR(30) not null, Receiver VARCHAR(30) not null, Status INT not null)ENGINE=InnoDB;
 
-CREATE TABLE CLUB(ClubID BIGINT unsigned not null auto_increment primary key, ClubName VARCHAR(50) not null, Description TEXT not null, ProfileImage LONGBLOB)ENGINE=InnoDB;
+CREATE TABLE CLUB(ClubID BIGINT unsigned not null auto_increment primary key, ClubName VARCHAR(50) not null, Description TEXT not null, ProfileImage LONGBLOB, Status INT)ENGINE=InnoDB;
 
 CREATE TABLE MEMBER(Username VARCHAR(30) not null, ClubID BIGINT unsigned not null, Privilage INT not null, Status INT not null, CONSTRAINT uniq UNIQUE(Username, ClubID), FOREIGN KEY(Username) REFERENCES USERS(Username), FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID)) ENGINE=InnoDB; 
 
@@ -16,6 +16,9 @@ SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE
 
 //add status to the USERS table
 ALTER TABLE USERS ADD COLUMN Status INT DEFAULT 0;
+
+//add status to the CLUB table
+ALTER TABLE CLUB ADD COLUMN Status INT;
 
 //File Status
 

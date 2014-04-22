@@ -9,10 +9,8 @@ else {
 	header("Location:register.php");
 }
 
-require('./includes/sideregion.inc.php');
 ?>
 
-<div id="mainregion">
 <h2>Compose Message</h2>
 
 <?php		
@@ -51,7 +49,7 @@ require('./includes/sideregion.inc.php');
 	}
 ?>
 
-<div>
+
 <form class="form-compose" role="form" action="compose.php" method="post">
 	<label> To </label><br>
 	<input type="text" name="userID" class="form-control" placeholder="Username ID"><br>
@@ -65,11 +63,9 @@ require('./includes/sideregion.inc.php');
 	<input type="reset" value="Reset"  class="btn btn-default">
 </form>
 
-</div>
-
-<div class="clear-all"> <br>
+<div class="clear-all">
 <br><br>
-<a  href="./index.php">Back to main page </a></div>
+<a  href="./inbox.php">Back to inbox</a></div>
 </div>
 
 

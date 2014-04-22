@@ -10,10 +10,10 @@ else {
 	header("Location:register.php");
 }
 
-require('./includes/sideregion.inc.php');
+
 ?>
 
-<div id="mainregion">
+
 <?php
    $id = $_POST['msgID'];
    require('./includes/mysql_connect.inc.php');
@@ -58,7 +58,7 @@ require('./includes/sideregion.inc.php');
    mysqli_close($link);
 
  ?> 
-</div>
+
 
 <?php
 require('./includes/footer.inc.php');
