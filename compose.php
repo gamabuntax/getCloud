@@ -11,7 +11,9 @@ else {
 
 ?>
 
-<h2 class="text-center">Compose Message</h2>
+<?php
+require('./includes/message_tab.inc.php');
+?>
 
 <?php		
 	if (isset($_POST['send'])) {
@@ -34,21 +36,22 @@ else {
 				//sleep(3);//seconds to wait..
 				
 				//header("Location:inbox.php");
-				echo '<p class="success text-center">Message has been sent succesfully!</p>';
+				echo '<button type="button" class="btn btn-success center-block">Message has been sent succesfully! </button>';
 			}
 			else {
-				echo '<p class="error text-center">Please enter a valid username.</p>';
+				echo '<button type="button" class="btn btn-danger center-block">Please enter a valid username. </button>';
 			} 
 		
 		mysqli_close($link);
 		}
 		else {
-			echo '<p class="error text-center">Please enter a valid name, username, and password. </p>';		
+			echo '<button type="button" class="btn btn-danger center-block">Please enter a valid name, username, and password. </button>';		
 		}
 		
 	}
 ?>
 
+<h1 class="text-center">Compose Message</h1>
 
 <form class="form-signin" role="form" action="compose.php" method="post">
 	<label> To </label><br>

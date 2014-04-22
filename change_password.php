@@ -22,14 +22,15 @@ else {
 				require('./includes/mysql_connect.inc.php');
 				$q = "UPDATE USERS SET Password = MD5('$password') WHERE Username ='$userName'";
 				$result = mysqli_query($link, $q);
-				echo '<p class="success text-center"> You changed your password sucessfully</p>';
+				echo '<button type="button" class="btn btn-success center-block">You changed your password sucessfully</button>';
 			}
 			else {
-				echo '<p class="error text-center">Password confirmation does not match password </p>';
+				echo '<button type="button" class="btn btn-danger center-block">Password confirmation does not match password </button>';
 			}
 		}
 		else {
-			echo '<p class="error text-center">Please enter your new password and password confirmation </p>';
+			echo '<button type="button" class="btn btn-danger center-block">Please enter your new password and password confirmation </button>';
+			
 		}
 	}
 

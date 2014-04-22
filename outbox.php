@@ -11,6 +11,9 @@ else {
 }
 
 ?>
+<?php
+require('./includes/message_tab.inc.php');
+?>
 
 <h1>Outbox</h1>
   <table class="table table-striped table-condensed" width="100%">
