@@ -32,17 +32,17 @@ else {
 			$q = "INSERT INTO CLUB (ClubName, Description, Status) VALUES ('$clubName', '$description','1')";
 			$result = mysqli_query($link,$q);
 
-			echo '<p class="success">Success! </p>';
+			echo '<p class="success text-center">Success! </p>';
 			mysqli_close($link);
 		}
 		else {
-			echo '<p class="error">Please enter a valid name and description </p>';
+			echo '<p class="error text-center">Please enter a valid name and description </p>';
 		}
 	}
 ?>
 
-<h2> Club request </h2>
-<form class="form-compose" role="form" action="club_request.php" method="post">
+<h2 class="text-center"> Club request </h2>
+<form class="form-signin" role="form" action="club_request.php" method="post">
 
 	<label> Name </label>
 	<input type="text" class="form-control" name="name" placeholder="Club name"><br>
@@ -54,7 +54,7 @@ else {
 
 <div class="clear-all">
 <br><br>
-<a  href="./myclubs.php">Back to my clubs</a></div>
+<p class="text-center"><a  href="./myclubs.php">Back to my clubs</a></div></p>
 </div>
 
 <?php

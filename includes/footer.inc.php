@@ -5,16 +5,20 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+     <script src="./includes/bootstrap.min.js"></script> 
+   <script src="./includes/bootstrap-filestyle.min.js"></script> 
+
     <script>
 
 $(document).ready(function() {
+	//$(":file").filestyle();
 
    $('tr:not(:first-child)').hover(
 	  function(){
 	  	$(this).addClass('success');
 	  }, //end mouseover
 	  
-	  function(){
+	  function(){	
 	  	$(this).removeClass('success');
 	  } //end mouseout        
 	  
@@ -43,6 +47,5 @@ $(document).ready(function() {
 
 
 </script>
-    <script src="./includes/bootstrap.min.js"></script> 
   </body>
 </html>

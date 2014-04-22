@@ -64,11 +64,13 @@
 ?>
 
 <div id="mainregion">
-	<form action="modules/uploadmanager.php" method="post" enctype="multipart/form-data">
+	<form  action="modules/uploadmanager.php" method="post" enctype="multipart/form-data">
         <input type="submit" value="Upload" class="btn btn-sm " style="float:right;" >
+
         <input type="text" name="caption" maxlength="100" placeholder="Add a caption" style="float:right;" required>
         <input type="text" name="name" maxlength="30" placeholder="Name your file" style="float:right;" required>
-        <input type="file" name="file" style="float:right;" required>
+        <input type="file"  name="file" style="float:right;" required>
+        
     </form>
     <br>
 
