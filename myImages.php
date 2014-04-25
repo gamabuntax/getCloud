@@ -34,6 +34,7 @@
       		$cap = $row['Caption'];
 	        $name = $row['Filename'];
 	        $file = base64_encode($row['Data']);
+	        $type = $row['Type'];
 	        $abrvname = "";
 	        $i = 0;
 	        while($i < strlen($name) && $i < 10){
@@ -45,11 +46,12 @@
 	        }
 
         	echo "<div style='float:left;'>
-					<form method='post' action='./modules/showimg.php' target='_blank'>
+					<form method='post' action='aboutfile.php'>
 						<input type='hidden' name='file' value='".$file."'/>
+						<input type='hidden' name='type' value='".$type."'/>
 	                    <input type='hidden' name='caption'  value='".$cap."'/>
 	                    <input type='hidden' name='name'  value='".$name."'/>
-		                <button type='submit' class='imgbtn'>
+		                <button type='submit' class='imgbtn' name='submit'>
 		                	<img src='data:image;base64,".$file."'height='50' width='' alt='".$cap."'/>
 		                </button>
 		            </form>

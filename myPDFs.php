@@ -34,6 +34,7 @@
       		$cap = $row['Caption'];
 	        $name = $row['Filename'];
 	        $file = base64_encode($row['Data']);
+	        $type = $row['Type'];
 	        $abrvname = "";
 	        $i = 0;
 	        while($i < strlen($name) && $i < 10){
@@ -45,48 +46,35 @@
 	        }
 
 	        echo "<tr>
-	        		<td align='left'>
-	   
-              			<li class='dropdown nav' >
-              				<a class='dropdown-toggle imgbtn' data-toggle='dropdown'>
-	        					<img src='./thumbnails/pdfthumb.png' height='30' alt='".$cap."'/>
-              				</a>
-              				<ul class='dropdown-menu'>
-	                			<li><a class='dropdown-toggle' data-toggle='dropdown'>Share</a>
-	                				<ul class='dropdown-menu'>
-	                					<li>
-
-			                			<form method='post' action='./modules/sharemanager.php'>
-			    							<input type='hidden' name='fileID' value='".$row['FileID']."'/>
-			    							<input type='hidden' name='fileStatus' value='".$row['Status']."'/>
-					        				<button type='submit' name='share' class='imgbtn'>Share</button>
-					      					</form>
-					      				</li>
-					      			</ul>
-			      				</li>
-	                			<li><a>Delete</a></li>
-              				</ul>
-            			</li>
-					
-			          
-			        </td>
-			      
-			        
-			        <td style='padding-top:1%;' width='20%'>
-						<form method='post' action='./modules/showpdf.php' target='_blank'>
+	        		<td>
+	   					<form method='post' action='aboutfile.php'>
 							<input type='hidden' name='pdf' value='".$file."'/>
+							<input type='hidden' name='type' value='".$type."'/>
 		                    <input type='hidden' name='caption'  value='".$cap."'/>
 		                    <input type='hidden' name='name'  value='".$name."'/>
-			                <button class='button-link' type='submit' class='btn btn-xs'>".$name."</button>
+			                <button class='button-link' type='submit' class='btn btn-xs' name='submit'>
+					        	<img src='./thumbnails/pdfthumb.png' height='30' alt='".$cap."'/>
+					        </button>
+					 	</form> 
+			        </td>
+			      
+			        <td style='padding-top:1%;' width='20%'>
+						<form method='post' action='aboutfile.php'>
+							<input type='hidden' name='pdf' value='".$file."'/>
+							<input type='hidden' name='type' value='".$type."'/>
+		                    <input type='hidden' name='caption'  value='".$cap."'/>
+		                    <input type='hidden' name='name'  value='".$name."'/>
+			                <button class='button-link' type='submit' class='btn btn-xs' name='submit'>".$name."</button>
 			            </form>
 			        </td>
 
 			        <td style='padding-top:1%;' width='75%'>
-						<form method='post' action='./modules/showpdf.php' target='_blank'>
+						<form method='post' action='aboutfile.php'>
 							<input type='hidden' name='pdf' value='".$file."'/>
+							<input type='hidden' name='type' value='".$type."'/>
 		                    <input type='hidden' name='caption'  value='".$cap."'/>
 		                    <input type='hidden' name='name'  value='".$name."'/>
-			                <button class='button-link' type='submit' class='btn btn-xs'>".$cap."</button>
+			                <button class='button-link' type='submit' class='btn btn-xs' name='submit'>".$cap."</button>
 			            </form>
 			        </td>
 			   
@@ -119,7 +107,7 @@
 
     <table class="table table-striped table-condensed table-hover row-clickable" width="100%">
         <tr class="message-header">
-            <td width="5%"><strong>Option</strong></td>
+            <td width="5%"></td>
             <td width="10%" ><strong>Name</strong></td>
             <td width="85%"><strong>Caption</strong></td> 
         </tr>
