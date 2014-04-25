@@ -6,8 +6,10 @@ CREATE TABLE CLUB(ClubID BIGINT unsigned not null auto_increment primary key, Cl
 
 CREATE TABLE MEMBER(Username VARCHAR(30) not null, ClubID BIGINT unsigned not null, Privilage INT not null, Status INT not null, CONSTRAINT uniq UNIQUE(Username, ClubID), FOREIGN KEY(Username) REFERENCES USERS(Username), FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID)) ENGINE=InnoDB; 
 
+//Status: 0= private ; 1 = public
 CREATE TABLE FILE(FileID BIGINT unsigned not null auto_increment primary key, Filename VARCHAR(30) not null, Caption VARCHAR(255) not null, Data LONGBLOB not null, Type VARCHAR(32) not null, Status INT not null, Owner VARCHAR(30) not null, FOREIGN KEY(Owner) REFERENCES USERS(Username))ENGINE=InnoDB;
 
+//shared files for clubs
 CREATE TABLE SHAREDFILES(FileID BIGINT unsigned not null, ClubID BIGINT unsigned not null, Status INT not null, CONSTRAINT uniq UNIQUE(FileID, ClubID), FOREIGN KEY(FileID) REFERENCES FILE(FileID), FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB;
 
 SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE '%lake%' OR Caption LIKE '%purple%';

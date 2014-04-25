@@ -8,7 +8,6 @@
     else {
         header("Location:register.php");
     }
-
     require('../includes/sideregion.inc.php');
 ?>
 
@@ -41,63 +40,31 @@
         $query = "INSERT INTO FILE(Filename, Caption, Data, type, Status, Owner) 
                         VALUES('$name', '$caption', '$escapedfile', '$type', '$status', '$user')"; 
         $result = mysqli_query( $link, $query);
-        if ($result){
-           makethumbnail($link, $file, $type);  
-        }
         mysqli_close($link);
         return $result;
-    }
-
-    function makethumbnail($link, $file, $type){ 
-        /*
-        //add the desired extension to the thumbnail
-        $thumb = mysqli_insert_id().".jpg";
-        $thumbDirectory = "../thumbnails";
- 
-        //execute imageMagick's 'convert', setting the color space to RGB and size to 200px wide
-        exec("convert \"{$file}[0]\" -colorspace RGB -geometry 200 $thumbDirectory $thumb");
-        */
-
-         $size = 0.40; 
-
-         // Setting the resize parameters
-         list($width, $height) = getimagesize($file); 
-         $modwidth = $width * $size; 
-         $modheight = $height * $size; 
-
-         // Creating the Canvas 
-         $tmp_img = imagecreatetruecolor($modwidth, $modheight); 
-
-         $source = imagecreatefromjpeg($file); 
-
-         echo "resizing...";
-         // Resizing our image to fit the canvas 
-         $image = imagecopyresized($thumb, $source, 0, 0, 0, 0, $modwidth, $modheight, $width, $height); 
-         imagejpeg($tmp_img, "../thumbnails");
-
     }
 ?>
 
 <?php //MAIN
 
     if ($_FILES["file"]["error"] != 0){
-        $_SESSION['uploadStatus'] = "<b style='color:red;' align='center'>Error:".$_FILES["file"]["error"]."<b>";
-        header('Location: ../myfiles.php');
+        $_SESSION['uploadStatus'] = "<b style='color:red;float:left;'>Error:".$_FILES["file"]["error"]."<b>";
+        header('Location:'.$_SESSION['prevURL']);
     }
     elseif (isValidFile()){
         $file = file_get_contents($_FILES['file']['tmp_name']);
         if (upload($file)){ 
-            $_SESSION['uploadStatus'] = "<b style='color:green;'>File uploaded!</b>";
-            header('Location: ../myfiles.php');
+            $_SESSION['uploadStatus'] = "<b style='color:green;float:left;'>File uploaded!</b>";
+            header('Location:'.$_SESSION['prevURL']);
         }else{
-            $_SESSION['uploadStatus'] = "<b style='color:red;'>Something wrong. File not uploaded.</b>";
-            header('Location: ../myfiles.php');
+            $_SESSION['uploadStatus'] = "<b style='color:red;float:left;'>Something wrong. File not uploaded.</b>";
+            header('Location:'.$_SESSION['prevURL']);
         } 
     }
     else {
-        $_SESSION['uploadStatus'] = "<b style='color:red;' align='center'>
+        $_SESSION['uploadStatus'] = "<b style='color:red;float:left;' align='center'>
         Sorry, we currently only support pdf, jpg, and jpeg files.<b>";
-        header('Location: ../myfiles.php');
+        header('Location:'.$_SESSION['prevURL']);
     }
 ?>
 

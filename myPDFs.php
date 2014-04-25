@@ -4,11 +4,13 @@
 
 	if (isset($_SESSION['userName'])) {
 		$userName = $_SESSION['userName'];
+		$_SESSION['prevURL'] = $_SERVER['REQUEST_URI'];
 	}
 	else {
 		header("Location:register.php");
 	}
 ?>
+
 
 <?php
 	/*
@@ -42,16 +44,54 @@
 	        	$abrvname = $abrvname."...";
 	        }
 
-	        echo "<div style='float:left;'>
-					<form method='post' action='./modules/showpdf.php' target='_blank'>
-						<input type='hidden' name='pdf' value='".$file."'/>
-	                    <input type='hidden' name='caption'  value='".$cap."'/>
-	                    <input type='hidden' name='name'  value='".$name."'/>
-		                <button type='submit' class='imgbtn'>
-		                	<img src='./thumbnails/pdfthumb.png' height='50' width='' alt='".$cap."'/>
-		                </button>
-		            </form>
-		          </div>";
+	        echo "<tr>
+	        		<td align='left'>
+	   
+              			<li class='dropdown nav' >
+              				<a class='dropdown-toggle imgbtn' data-toggle='dropdown'>
+	        					<img src='./thumbnails/pdfthumb.png' height='30' alt='".$cap."'/>
+              				</a>
+              				<ul class='dropdown-menu'>
+	                			<li><a class='dropdown-toggle' data-toggle='dropdown'>Share</a>
+	                				<ul class='dropdown-menu'>
+	                					<li>
+
+			                			<form method='post' action='./modules/sharemanager.php'>
+			    							<input type='hidden' name='fileID' value='".$row['FileID']."'/>
+			    							<input type='hidden' name='fileStatus' value='".$row['Status']."'/>
+					        				<button type='submit' name='share' class='imgbtn'>Share</button>
+					      					</form>
+					      				</li>
+					      			</ul>
+			      				</li>
+	                			<li><a>Delete</a></li>
+              				</ul>
+            			</li>
+					
+			          
+			        </td>
+			      
+			        
+			        <td style='padding-top:1%;' width='20%'>
+						<form method='post' action='./modules/showpdf.php' target='_blank'>
+							<input type='hidden' name='pdf' value='".$file."'/>
+		                    <input type='hidden' name='caption'  value='".$cap."'/>
+		                    <input type='hidden' name='name'  value='".$name."'/>
+			                <button class='button-link' type='submit' class='btn btn-xs'>".$name."</button>
+			            </form>
+			        </td>
+
+			        <td style='padding-top:1%;' width='75%'>
+						<form method='post' action='./modules/showpdf.php' target='_blank'>
+							<input type='hidden' name='pdf' value='".$file."'/>
+		                    <input type='hidden' name='caption'  value='".$cap."'/>
+		                    <input type='hidden' name='name'  value='".$name."'/>
+			                <button class='button-link' type='submit' class='btn btn-xs'>".$cap."</button>
+			            </form>
+			        </td>
+			   
+			        
+		          </tr>";       
        } 
         mysqli_close($link);   
     }
@@ -70,15 +110,21 @@
         <input type="text" name="name" maxlength="30" placeholder="Name your file" style="float:right;" required>
         <input type="file" name="file" style="float:right;" required>
     </form>
+    <?php uploadStatus(); ?>
     <br>
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <ul id="tabs" class="nav nav-tabs">
         <li ><a href="myImages.php">Image</a></li>
         <li class="active" ><a href="myPDFs.php">PDF</a></li>
     </ul>
-    <?php 
-    	uploadStatus(); 
-    	displayFiles();
-    ?>
+
+    <table class="table table-striped table-condensed table-hover row-clickable" width="100%">
+        <tr class="message-header">
+            <td width="5%"><strong>Option</strong></td>
+            <td width="10%" ><strong>Name</strong></td>
+            <td width="85%"><strong>Caption</strong></td> 
+        </tr>
+    	<?php displayFiles(); ?>
+    </table>
 </div>
 
 <?php

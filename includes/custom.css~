@@ -101,10 +101,9 @@ body {
 .imgbtn{
     background:none!important;
     border:none; 
-    padding:1px!important;
-    padding-bottom:5px!important;
-    /*border is optional*/
-    border-bottom:px solid #444; 
+    padding-bottom:0px!important;
+
+   
 }
 
 
