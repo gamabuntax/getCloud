@@ -11,6 +11,10 @@ else {
 }
 ?>
 
+<?php
+require('./includes/message_tab.inc.php');
+?>
+
 <h1>Inbox</h1>
  <table class="table table-striped table-condensed table-hover row-clickable" width="100%">
             <tr class="message-header">

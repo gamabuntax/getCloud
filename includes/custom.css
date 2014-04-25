@@ -45,9 +45,9 @@ body {
   border-top-right-radius: 0;
 }
 
-
 .error {
-  color: red;
+  color: white;
+  background-color: #d9534f;
 }
 
 .success {
@@ -101,3 +101,9 @@ body {
 .clear-all {
   clear: both;  
 }
+
+.navbar-brand {
+  color:yellow;
+}
+
+

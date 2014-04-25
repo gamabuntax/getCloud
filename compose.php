@@ -11,7 +11,9 @@ else {
 
 ?>
 
-<h2>Compose Message</h2>
+<?php
+require('./includes/message_tab.inc.php');
+?>
 
 <?php		
 	if (isset($_POST['send'])) {
@@ -34,28 +36,29 @@ else {
 				//sleep(3);//seconds to wait..
 				
 				//header("Location:inbox.php");
-				echo '<p class="success">Message has been sent succesfully!</p>';
+				echo '<button type="button" class="btn btn-success center-block">Message has been sent succesfully! </button>';
 			}
 			else {
-				echo '<p class="error">Please enter a valid username.</p>';
+				echo '<button type="button" class="btn btn-danger center-block">Please enter a valid username. </button>';
 			} 
 		
 		mysqli_close($link);
 		}
 		else {
-			echo '<p class="error">Please enter a valid name, username, and password. </p>';		
+			echo '<button type="button" class="btn btn-danger center-block">Please enter a valid name, username, and password. </button>';		
 		}
 		
 	}
 ?>
 
+<h1 class="text-center">Compose Message</h1>
 
-<form class="form-compose" role="form" action="compose.php" method="post">
+<form class="form-signin" role="form" action="compose.php" method="post">
 	<label> To </label><br>
-	<input type="text" name="userID" class="form-control" placeholder="Username ID"><br>
+	<input type="text" name="userID" class="form-control" placeholder="Username ID">
 
 	<label> Subject </label><br>
-	<input type="text" name="subject" class="form-control" placeholder="Enter your subject here"><br>
+	<input type="text" name="subject" class="form-control" placeholder="Enter your subject here">
 
 	<label> Message </label><br>
 	<textarea name="message" cols="70" rows="4" maxlength="150" class="form-control" placeholder="Enter your message here"></textarea><br>
@@ -65,7 +68,7 @@ else {
 
 <div class="clear-all">
 <br><br>
-<a  href="./inbox.php">Back to inbox</a></div>
+<p class="text-center"><a  href="./inbox.php">Back to inbox</a></div></p>
 </div>
 
 
