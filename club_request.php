@@ -11,9 +11,6 @@ else {
 
 ?>
 
-
-
-
 <?php
 	if (isset($_POST['send'])) {
 		if (!empty($_POST['name']) && !empty($_POST['description'])) {
@@ -35,11 +32,11 @@ else {
 			$q = "INSERT INTO CLUB (ClubName, Description, Status) VALUES ('$clubName', '$description','1')";
 			$result = mysqli_query($link,$q);
 
-			echo '<p class="success text-center">Success! </p>';
+			echo '<button type="button" class="btn btn-success center-block">Your request has been sent! </button>';	
 			mysqli_close($link);
 		}
 		else {
-			echo '<p class="error text-center">Please enter a valid name and description </p>';
+			echo '<button type="button" class="btn btn-danger center-block">Please enter club name and description </button>';	
 		}
 	}
 ?>

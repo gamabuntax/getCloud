@@ -1,4 +1,4 @@
-<?php 
+    <?php 
 $page_title = 'getCloud | Outbox';
 require('./includes/header.inc.php');
 
@@ -59,7 +59,7 @@ require('./includes/message_tab.inc.php');
 	}
 
 	else {
-		echo '<tr><p class="error">You dont have any message.</p></tr>';	
+		echo '<tr><button type="button" class="btn btn-danger">You dont have any message </button></tr>';
 	}
 
 	if(isset($_POST['delete'])){
