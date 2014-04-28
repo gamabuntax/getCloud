@@ -1,5 +1,5 @@
 <?php 
-$page_title = 'getCloud | My clubs';
+$page_title = 'getCloud | Clubs';
 require('./includes/header.inc.php');
 
 if (isset($_SESSION['userName'])) {
@@ -28,7 +28,7 @@ require('./includes/club_tab.inc.php');
 
  <?php
  	require('./includes/mysql_connect.inc.php');
- 	$q = "SELECT CLUB.ClubName, CLUB.Description, CLUB.ClubID FROM MEMBER, CLUB WHERE MEMBER.Username ='$userName'";
+ 	$q = "SELECT CLUB.ClubName, CLUB.Description, CLUB.ClubID FROM CLUB WHERE Status = 2";
  	$result = mysqli_query($link,$q);
  	if(mysqli_num_rows($result) > 0) {
 		while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {

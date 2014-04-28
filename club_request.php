@@ -11,6 +11,11 @@ else {
 
 ?>
 
+
+<?php
+require('./includes/club_tab.inc.php');
+?>
+
 <?php
 	if (isset($_POST['send'])) {
 		if (!empty($_POST['name']) && !empty($_POST['description'])) {
@@ -29,7 +34,7 @@ else {
 				$result_message = mysqli_query($link,$q);
 			}
 
-			$q = "INSERT INTO CLUB (ClubName, Description, Status) VALUES ('$clubName', '$description','1')";
+			$q = "INSERT INTO CLUB (ClubName, Description, Status, Username) VALUES ('$clubName', '$description','1', '$userName')";
 			$result = mysqli_query($link,$q);
 
 			echo '<button type="button" class="btn btn-success center-block">Your request has been sent! </button>';	

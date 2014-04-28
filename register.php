@@ -22,21 +22,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         	$result = mysqli_query($link, $q);
         	if ($result) {
-				echo '<p class = "error"> Register successfully!!</p>';
+        		echo '<button type="button" class="btn btn-success center-block">Register successfully</button>';
 			}
 		
 			else {
-				echo '<p class = "error"> Username is already taken!</p>';
+				echo '<button type="button" class="btn btn-danger center-block">Username is already taken</button>';
 			}
         	mysqli_close($link);
         }
         else {
-        	echo '<p class="error">Password confirmation does not match password </p>';
+        	echo '<button type="button" class="btn btn-danger center-block">Password confirmation does not match password</button>';
         }		
 	} 
 	
 	else {
-		echo '<p class="error">Please enter a vaid name, username, and password! </p>';
+		echo '<button type="button" class="btn btn-danger center-block">Please enter a valid name, username, and password </button>';
 	} 
 }
 ?>

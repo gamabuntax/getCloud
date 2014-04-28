@@ -52,8 +52,8 @@ require('./includes/message_tab.inc.php');
                     <button class="button-link" type="submit">' . $row[3]. '</button></form></td>
 
                     <td width="15%"><form action="outbox.php" method="post">
-                    <input type="hidden" name="delete"  value="'.$row[0].'">	
-                    <button class="button-link" type="submit" class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
+                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
+                    <button type="submit" name="delete" class="btn btn-xs"><img src="./includes/delete.png" /></button></form></td>
               		</tr>';
 		}
 	}
@@ -63,7 +63,7 @@ require('./includes/message_tab.inc.php');
 	}
 
 	if(isset($_POST['delete'])){
-		$id = $_POST['delete'];
+		$id = $_POST['msgID'];
 		$query = "UPDATE MAILBOX SET Status = CASE Status WHEN 1 THEN 5 WHEN 2 THEN 6 WHEN 3 THEN 7 WHEN 4 THEN 7 END WHERE MessageID='$id'";
 				
     	mysqli_query($link, $query);

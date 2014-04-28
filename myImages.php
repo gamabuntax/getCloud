@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 	$page_title = 'getCloud | MyFiles';
 	require('./includes/header.inc.php');
 
