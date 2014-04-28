@@ -9,7 +9,7 @@ else {
 	header("Location:register.php");
 }
 
-require('./includes/view_club_tab.inc.php');
+	require('./includes/view_club_tab.inc.php');
 ?>
 
 

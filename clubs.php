@@ -34,7 +34,7 @@ require('./includes/club_tab.inc.php');
 		while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
 			echo '<tr>
 			 <td width="30%"><form action="viewClub.php" method="post">
-                   <input type="hidden" name="ClubID"  value="'.$row[2].'">	
+                   <input type="hidden" name="ClubID"  value="'.$row[2].'">		
                     <button class="button-link" type="submit">' . $row[0]. '</button></form></td>
 
              <td width="70%"><form action="viewClub.php" method="post">
@@ -44,7 +44,6 @@ require('./includes/club_tab.inc.php');
 	}
 
 ?>
-
 
 </table>
 

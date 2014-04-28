@@ -8,8 +8,6 @@
     else {
         header("Location:register.php");
     }
-
-    require('../includes/sideregion.inc.php');
 ?>
 
 <?php

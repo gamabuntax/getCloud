@@ -10,6 +10,7 @@ else {
 	header("Location:register.php");
 }
 
+require('./includes/message_tab.inc.php');
 
 ?>
 
