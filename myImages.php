@@ -4,6 +4,7 @@
 
 	if (isset($_SESSION['userName'])) {
 		$userName = $_SESSION['userName'];
+		$_SESSION['prevURL'] = $_SERVER['REQUEST_URI'];
 	}
 	else {
 		header("Location:register.php");
@@ -26,13 +27,14 @@
 	function displayFiles(){
         require('./includes/mysql_connect.inc.php');
         $user = $_SESSION['userName'];
-        $query = "SELECT * FROM FILE WHERE Owner='$user' AND Type!='application/pdf'";
+        $query = "SELECT * FROM FILE WHERE Owner='$user' AND Type!='application/pdf' ORDER BY FileID DESC";
         $result = mysqli_query($link, $query)or die("Error:".mysqli_error($link));
 
         while($row = mysqli_fetch_array($result)){
       		$cap = $row['Caption'];
 	        $name = $row['Filename'];
 	        $file = base64_encode($row['Data']);
+	        $type = $row['Type'];
 	        $abrvname = "";
 	        $i = 0;
 	        while($i < strlen($name) && $i < 10){
@@ -44,12 +46,13 @@
 	        }
 
         	echo "<div style='float:left;'>
-					<form method='post' action='./modules/showpdf.php' target='_blank'>
-						<input type='hidden' name='pdf' value='".$file."'/>
+					<form method='post' action='aboutfile.php'>
+						<input type='hidden' name='file' value='".$file."'/>
+						<input type='hidden' name='type' value='".$type."'/>
 	                    <input type='hidden' name='caption'  value='".$cap."'/>
 	                    <input type='hidden' name='name'  value='".$name."'/>
-		                <button type='submit' class='imgbtn'>
-		                	<img src='data:image;base64,".$file."'height='150' width='' alt='".$row['Caption']."'/>'
+		                <button type='submit' class='imgbtn' name='submit'>
+		                	<img src='data:image;base64,".$file."'height='50' width='' alt='".$cap."'/>
 		                </button>
 		            </form>
 		          </div>";        
@@ -72,16 +75,13 @@
         <input type="file"  name="file" style="float:right;" required>
         
     </form>
-    <br>
-
-    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <br><br>
+    <?php uploadStatus(); ?>
+    <ul id="tabs" class="nav nav-tabs">
         <li class="active"><a href="myImages.php" >Image</a></li>
         <li><a href="myPDFs.php">PDF</a></li>
     </ul>
-    <?php 
-    	uploadStatus(); 
-    	displayFiles();
-    ?>
+    <?php displayFiles(); ?>
 </div>
 
 <?php
