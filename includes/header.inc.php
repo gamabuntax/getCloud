@@ -40,33 +40,31 @@ session_start();
           <a class="navbar-brand" href="./index.php">GETCLOUD</a>
         </div>
         <div class="navbar-collapse collapse">
-           <?php if (isset($_SESSION['userName'])) { ?>
+
+      <?php if (isset($_SESSION['userName'])) { ?>
+
           <ul class="nav navbar-nav">
        <!-- message -->
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Message <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="./compose.php">Compose</a></li>
-                <li><a href="./inbox.php">Inbox</a></li>
-                <li><a href="./outbox.php">Outbox</a></li>
-              </ul>
-            </li>
+       <li <?php if ($currentPage == 'inbox.php' || $currentPage == 'outbox.php' || $currentPage == 'compose.php' ) { echo 'class="active"';} ?>><a href="./inbox.php">Message</a></li>
+      <li <?php if ($currentPage == 'myImages.php') { echo 'class="active"';} ?>><a href="./myImages.php">My files</a></li>
+           
+      <?php
+        require('./includes/mysql_connect.inc.php');
+        $q = "SELECT Status From USERS WHERE Username ='" . $_SESSION['userName'] . "'";
+        $result = mysqli_query($link,$q);
+        $row = mysqli_fetch_array($result, MYSQL_NUM);
+        mysqli_close($link);
 
-            <!-- club -->
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clubs <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="./club_request.php">Request for a club</a></li>
-                <li><a href="./myclubs.php">My clubs</a></li>
-              </ul>
-            </li>
-            <li <?php if ($currentPage == 'myImages.php') { echo 'class="active"';} ?>><a href="./myImages.php">My files</a></li>
+        if ($row[0] == 1) { ?>
+          <li <?php if ($currentPage == 'club_admin.php') { echo 'class="active"';} ?>><a href="./club_admin.php">Club</a></li>
           </ul>
+        <?php } else { ?>
 
-          <!-- file -->
-
-          <?php } ?>
-
+           <li><a href="./myclubs.php">My clubs</a></li>
+          
+          </ul>
+           <?php } ?>
+      <?php }?>
           <ul class="nav navbar-nav navbar-right">
              <!-- User -->
 

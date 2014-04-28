@@ -54,8 +54,8 @@ require('./includes/message_tab.inc.php');
                     <button  class="button-link" type="submit"><strong>' . $row[3]. '</strong></button></form></td>
 
                     <td width="15%"><form action="inbox.php" method="post">
-                    <input type="hidden" name="delete"  value="'.$row[0].'">	
-                    <button class="button-link" type="submit" class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
+                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
+                    <button type="submit" name="delete" class="btn btn-xs"><img src="./includes/delete.png" /></button></form></td>
               		</tr>';
 			}
 
@@ -75,18 +75,18 @@ require('./includes/message_tab.inc.php');
                     <button class="button-link" type="submit">' . $row[3]. '</button></form></td>
 
                     <td width="15%"><form action="inbox.php" method="post">
-                    <input type="hidden" name="delete"  value="'.$row[0].'">	
-                  	<button class="button-link" type="submit" class="btn btn-xs"><img src="./includes/delete.png" /></button></td>
+                    <input type="hidden" name="msgID"  value="'.$row[0].'">	
+                  	<button type="submit" name="delete" class="btn btn-xs"><img src="./includes/delete.png" /></button></form></td>
               		</tr>';
                 }
 		}
 	}
 	else {
-		echo '<tr><p class="error">You dont have any message.</p></tr>';
+        echo '<tr><button type="button" class="btn btn-danger">You dont have any message </button></tr>';
 	}
 
 	if(isset($_POST['delete'])){
-		$id = $_POST['delete'];
+		$id = $_POST['msgID'];
 		$query = "UPDATE MAILBOX SET Status = CASE Status WHEN 1 THEN 3 WHEN 2 THEN 4 WHEN 5 THEN 7 WHEN 6 THEN 7 END WHERE MessageID='$id'";
     	mysqli_query($link, $query);
     	header("Location:inbox.php"); 

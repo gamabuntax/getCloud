@@ -22,6 +22,10 @@ ALTER TABLE USERS ADD COLUMN Status INT DEFAULT 0;
 //add status to the CLUB table
 ALTER TABLE CLUB ADD COLUMN Status INT;
 
+
+//add username to the CLUB table
+ALTER TABLE CLUB ADD COLUMN Username CHAR(30);
+
 //File Status
 0 = private
 1 = public

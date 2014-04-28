@@ -39,13 +39,13 @@ require('./includes/message_tab.inc.php');
 				echo '<button type="button" class="btn btn-success center-block">Message has been sent succesfully! </button>';
 			}
 			else {
-				echo '<button type="button" class="btn btn-danger center-block">Please enter a valid username. </button>';
+				echo '<button type="button" class="btn btn-danger center-block">Please enter a valid username </button>';
 			} 
 		
 		mysqli_close($link);
 		}
 		else {
-			echo '<button type="button" class="btn btn-danger center-block">Please enter a valid name, username, and password. </button>';		
+			echo '<button type="button" class="btn btn-danger center-block">Please enter username, subject and password </button>';		
 		}
 		
 	}

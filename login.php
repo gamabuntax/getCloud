@@ -31,13 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			header("Location:inbox.php");
 		}
 		else {
-			echo '<p class="error text-center">The user name and password entered do not match</p>';
+			echo '<button type="button" class="btn btn-danger center-block">Invalid username/password combination </button>';
 		}
 		mysqli_close($link);
 	}
 	
 	else {
-		echo '<p class="error">Please enter your username and password </p>';
+		echo '<button type="button" class="btn btn-danger center-block">Please enter your username and password </button>';
+
 	}
 }
 ?>
