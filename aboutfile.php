@@ -13,14 +13,17 @@
 
 <?php
 	function displayFileInfo(){
-
+		echo "<div align='center'>
+				<h1>".$_POST['name']."</h1>
+				<p>'".$_POST['caption']."'</p>
+			  <div>";
 	}
 
 	function displayPDFThumbnail(){
 		echo "<br><div align='center'>
 				<form method='post' action='showimg.php'>					
 		            <button type='submit' class='imgbtn'>
-		            	<img src='./thumbnails/pdfthumb.png' height='30' alt='".$_POST['caption']."'/>
+		            	<img src='./thumbnails/pdfthumb.png' height='100' alt='".$_POST['caption']."'/>
 		            </button>
 		      	</form>
 		      </div>";
@@ -51,22 +54,14 @@
 	<?php 
 		if(isset($_POST['submit'])){
 			if($_POST['type'] == "application/pdf"){
-				echo $_POST['type'];
 				displayPDFThumbnail();
 			}
 			else{
 				displayImageThumbnail();
 			}
-			displayFileInfo();
-
-
 		}
-
-
+		displayFileInfo();
 	?>
-
-
-
 </div>
 
 
