@@ -46,10 +46,10 @@ session_start();
           <ul class="nav navbar-nav">
        <!-- message -->
        <li <?php if ($currentPage == 'inbox.php' || $currentPage == 'outbox.php' || $currentPage == 'compose.php' ) { echo 'class="active"';} ?>><a href="./inbox.php">Message</a></li>
-      <li <?php if ($currentPage == 'myImages.php') { echo 'class="active"';} ?>><a href="./myImages.php">My files</a></li>
+      <li <?php if ($currentPage == 'myFiles.php') { echo 'class="active"';} ?>><a href="./myFiles.php">My files</a></li>
            
       <?php
-        require('./includes/mysql_connect.inc.php');
+        require('mysql_connect.inc.php');
         $q = "SELECT Status From USERS WHERE Username ='" . $_SESSION['userName'] . "'";
         $result = mysqli_query($link,$q);
         $row = mysqli_fetch_array($result, MYSQL_NUM);

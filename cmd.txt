@@ -18,10 +18,13 @@ SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE
 
 //add status to the USERS table
 ALTER TABLE USERS ADD COLUMN Status INT DEFAULT 0;
+0 - regular user
+1 - admin
 
 //add status to the CLUB table
 ALTER TABLE CLUB ADD COLUMN Status INT;
-
+1 - pending
+2 - active
 
 //add username to the CLUB table
 ALTER TABLE CLUB ADD COLUMN Username CHAR(30);

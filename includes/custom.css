@@ -106,4 +106,13 @@ body {
   color:yellow;
 }
 
+.float-left {
+  float:left;
+  padding: 2px 2px 0px 2px;
+}
 
+
+.form-center {
+  display: inline-block;
+    text-align: center;
+}
