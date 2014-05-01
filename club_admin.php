@@ -10,16 +10,19 @@ else {
 }
 ?>
 
-<h1> Request </h1>
+<h1> Club Request </h1>
 	 <table class="table table-striped table-condensed table-hover row-clickable" width="100%">
             <tr class="message-header">
-                <td width="15%">
+                <td  width="10%">
+                    <strong>Image </strong>
+                </td>
+                <td width="10%">
                     <strong>User </strong>
                 </td>
-                <td width="25%">
+                <td width="20%">
                     <strong>Club name</strong>
                 </td>
-                <td width="50%">
+                <td width="40%">
                     <strong>Description</strong>
                 </td>
                 <td width="5%">
@@ -32,12 +35,16 @@ else {
 
 <?php
 	require('./includes/mysql_connect.inc.php');
-	$q = "SELECT Username, ClubName, Description, ClubID FROM CLUB WHERE Status=1";
+	$q = "SELECT Username, ClubName, Description, ClubID, ProfileImage FROM CLUB WHERE Status=1";
 	$result = mysqli_query($link,$q);
 	if(mysqli_num_rows($result) > 0) {
 		while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
+            $file = base64_encode($row[4]);
 			echo '<tr>
-				<td width="15%">'. $row[0] . '</td><td width ="25%">' . $row[1] . '</td><td width="50%">' . $row[2] . '</td>
+
+                <td width="10%"><img src="data:image;base64,'.$file.'" height="50" width=""></td>
+
+				<td width="10%">'. $row[0] . '</td><td width ="20%">' . $row[1] . '</td><td width="40%">' . $row[2] . '</td>
 
 				 <td width="5%"><form action="club_admin.php" method="post">
                     <input type="hidden" name="id"  value="'.$row[3].'">

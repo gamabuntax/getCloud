@@ -43,11 +43,11 @@
 	}
 ?>
 
-<form action="<?php echo $currentPage; ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo $currentPage; ?>" class="form-inline" method="post" enctype="multipart/form-data">
 		<input type="file" name="file">
-		<input type="text" name="name" maxlength="30" placeholder="Name your file">
-        <input type="text" name="caption" maxlength="100" placeholder="Add a caption">
-        <input type="submit" name ="upload" value="Upload" class="btn btn-sm " >
+		<input type="text" class="form-control" name="name" maxlength="30" placeholder="Name your file">
+        <input type="text" class="form-control" name="caption" maxlength="100" placeholder="Add a caption">
+        <input type="submit" name ="upload" value="Upload" class="btn btn-default " >
 </form>
 
    <br>

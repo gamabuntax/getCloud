@@ -12,19 +12,25 @@
 
 <?php
 require('./includes/file_function.inc.php');
-require('./includes/upload_form.inc.php'); 
+
 require('./includes/file_tab.inc.php');
+require('./includes/upload_form.inc.php'); 
+
 ?>
-    <table class="table table-striped table-hover row-clickable" >
+    <table class="table table-striped table-condensed table-hover row-clickable" >
         <tr width='100%' class="message-header" >
             <td width="10%"></td>
             <td width="10%" ><strong>Status</strong></td>
-            <td width="10%" ><strong>Name</strong></td>
-            <td width="40%"><strong>Caption</strong></td>
+            <td width="15%" ><strong>Name</strong></td>
+            <td width="45%"><strong>Caption</strong></td>
             <td width="20%"><strong>Action</strong></td>
              
         </tr>
-    	<?php displayFile(); ?>
+
+    	<?php
+    	 $query = "SELECT * FROM FILE WHERE Owner='$userName'";
+    	 displayFile($query); 
+    	 ?>
     </table>
 
 <?php
@@ -49,7 +55,7 @@ if (isset($_POST['submit'])) {
 		$result = mysqli_query($link, $query);
 	}
 	mysqli_close($link);
-	header("Location:myPDFs.php"); 
+	header("Location:myFiles.php"); 
 }
 
    

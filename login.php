@@ -26,7 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$result = mysqli_query($link,$q);
 		if (mysqli_num_rows($result) == 1) {
 			$_SESSION['userName'] = $username;
-			$_SESSION['uploadStatus'] = "";
+
+			if ($username == "admin") {
+				$_SESSION['userType'] = "admin";
+			}
+			else {
+				$_SESSION['userType'] = "user";
+			}	
+			
 			mysqli_close($link);
 			header("Location:inbox.php");
 		}

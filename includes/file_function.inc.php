@@ -18,10 +18,10 @@ function upload($file){
     return $result;
 }
 
-function displayFile(){
+function displayFile($query){
     require('./includes/mysql_connect.inc.php');
     $userName = $_SESSION['userName'];
-    $query = "SELECT * FROM FILE WHERE Owner='$userName'";
+    //$query = "SELECT * FROM FILE WHERE Owner='$userName'";
     $result = mysqli_query($link, $query);
 
     while($row = mysqli_fetch_array($result)){
@@ -47,9 +47,10 @@ function displayFile(){
             echo '<td width="10%"><img src="data:image;base64,'.$file.'" height="50" width="">';
         }
         echo "<td width='10%'>".$status . "</td>
-            <td width='20%'>".$name . "</td>
-            <td width='40%'>".$cap . "</td>
-            <td width='40%'><form class='form-inline' action='myPDFs.php' method='post'>
+            <td width='15%'><a href='displayImage.php?id=".$fileID."' target='_blank'>". $name ."</a></td>
+            
+            <td width='45%'>".$cap . "</td>
+            <td width='20%'><form class='form-inline' action='myFiles.php' method='post'>
             <select class='form-control' name='sharing'>
             <option value='private'>Private</option>
             <option value='public'>Public</option>

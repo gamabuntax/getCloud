@@ -34,6 +34,14 @@ ALTER TABLE CLUB ADD COLUMN Username CHAR(30);
 1 = public
 
 
+//MEMBER STATUS
+PRIVLEDGE - 1 - MODERATOR
+			0 - USER
+STATUS 		0 - NOT BAN
+			1 = BAN
+			2 - Pending
+
+
 
 //email status system
 Sender Receiver (unread)		1
