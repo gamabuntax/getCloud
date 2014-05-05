@@ -41,15 +41,19 @@ function displayFile($query){
         echo "<tr width='100%'>";
 
         if ($type == "application/pdf") {
-            echo "<td width='10%'><img src='./thumbnails/pdfthumb.png' height='50' alt=''/></td>";
+            echo ' <td width="10%"><form action="viewPDF.php" method="post"  target="_blank">
+                    <input type="hidden" name="file"  value="'.$file.'"> 
+                    <button class="button-link" type="submit"><img src="./thumbnails/pdfthumb.png" height="50"/></button></form></td>';
         }
         else {
-            echo '<td width="10%"><img src="data:image;base64,'.$file.'" height="50" width="">';
+            echo ' <td width="10%"><form action="viewImage.php" method="post"  target="_blank">
+                    <input type="hidden" name="file"  value="'.$file.'"> 
+                    <button class="button-link" type="submit"><img src="data:image;base64,' . $file. '" height="50" width=""></button></form></td>';
         }
-        echo "<td width='10%'>".$status . "</td>
-            <td width='15%'><a href='displayImage.php?id=".$fileID."' target='_blank'>". $name ."</a></td>
-            
+        echo "
+            <td width='15%'>".$name . "</td>
             <td width='45%'>".$cap . "</td>
+            <td width='10%'>".$status . "</td>
             <td width='20%'><form class='form-inline' action='myFiles.php' method='post'>
             <select class='form-control' name='sharing'>
             <option value='private'>Private</option>

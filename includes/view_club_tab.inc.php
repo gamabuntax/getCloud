@@ -33,16 +33,16 @@ if ($row[0] == 0 && $currentPage == "moderator.php") {
 ?>
 
 
-
-
 <br>
 <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
 
         <li <?php if ($currentPage == 'viewClub.php') { echo 'class="active"';} 
         echo '><a href="viewClub.php?ClubID=' . $clubID . '">Club files</a>'; ?></li>
-        
+                   
+        <li <?php if ($currentPage == 'share_file.php') { echo 'class="active"';} 
+        echo '><a href="share_file.php?ClubID=' . $clubID . '">Your files</a>'; ?></li>
 
-     <?php if ($row[0] == 1) { ?>   
+        <?php if ($row[0] == 1) { ?>   
         <li <?php if ($currentPage == 'moderator.php') { echo 'class="active"';} 
         echo '><a href="moderator.php?ClubID=' . $clubID . '">Moderator page</a>'; ?></li>
 

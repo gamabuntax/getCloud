@@ -55,7 +55,7 @@ require('./includes/message_tab.inc.php');
 
                     <td width="15%"><form action="inbox.php" method="post">
                     <input type="hidden" name="msgID"  value="'.$row[0].'">	
-                    <button type="submit" name="delete" class="btn btn-xs"><img src="./includes/delete.png" /></button></form></td>
+                    <button type="submit" name="delete" class="btn btn-default">delete?</button></form></td>
               		</tr>';
 			}
 
@@ -76,7 +76,7 @@ require('./includes/message_tab.inc.php');
 
                     <td width="15%"><form action="inbox.php" method="post">
                     <input type="hidden" name="msgID"  value="'.$row[0].'">	
-                  	<button type="submit" name="delete" class="btn btn-xs"><img src="./includes/delete.png" /></button></form></td>
+                  	<button type="submit" name="delete" class="btn btn-default">delete?</button></form></td>
               		</tr>';
                 }
 		}

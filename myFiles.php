@@ -20,9 +20,10 @@ require('./includes/upload_form.inc.php');
     <table class="table table-striped table-condensed table-hover row-clickable" >
         <tr width='100%' class="message-header" >
             <td width="10%"></td>
-            <td width="10%" ><strong>Status</strong></td>
+           
             <td width="15%" ><strong>Name</strong></td>
             <td width="45%"><strong>Caption</strong></td>
+             <td width="10%" ><strong>Status</strong></td>
             <td width="20%"><strong>Action</strong></td>
              
         </tr>

@@ -154,7 +154,6 @@ require('./includes/view_club_tab.inc.php');
 
 ?>
 
-
 <div>
 <h1 class="">Message to all members</h1>
 

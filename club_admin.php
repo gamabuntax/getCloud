@@ -8,6 +8,9 @@ if (isset($_SESSION['userName'])) {
 else {
 	header("Location:register.php");
 }
+
+require('./includes/admin_tab.inc.php');
+
 ?>
 
 <h1> Club Request </h1>
@@ -95,6 +98,52 @@ mysqli_close($link);
 
  </table>
 
+
+<h1> Clubs </h1>
+
+<table class="table table-striped table-condensed table-hover row-clickable" width="100%">
+            <tr class="message-header">
+                <td  width="10%">
+                    <strong>Image </strong>
+                </td>
+                <td width="20%">
+                    <strong>Club name</strong>
+                </td>
+                <td width="40%">
+                    <strong>Description</strong>
+                </td>
+                <td width="10%">
+                    <strong>Action</strong>
+                    </td>
+            </tr>
+
+<?php
+    require('./includes/mysql_connect.inc.php'); 
+    $q = "SELECT ClubName, Description, ClubID, ProfileImage FROM CLUB WHERE Status=2";
+    $result = mysqli_query($link,$q);
+    if(mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
+            $file = base64_encode($row[3]);
+            echo '<tr>
+
+                <td width="10%"><img src="data:image;base64,'.$file.'" height="50" width=""></td>
+
+                <td width ="20%">' . $row[0] . '</td><td width="40%">' . $row[1] . '</td>
+
+                  <td width="10%"><form action="change_moderator.php" method="post">
+                    <input type="hidden" name="id"  value="'.$row[2].'">
+                    <input type="hidden" name="clubname"  value="'.$row[0].'">
+                    <button type="submit" name="change" class="btn btn-default">Change moderator?</button></form>
+                    </td></tr>';            
+        }
+    }  
+
+
+
+?>
+
+
+</table>
 
 <?php
 require('./includes/footer.inc.php');
