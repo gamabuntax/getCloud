@@ -36,9 +36,9 @@ require('./includes/message_tab.inc.php');
  	require('./includes/mysql_connect.inc.php');
 	
 	$q = "SELECT MessageID, Sender, Subject, MsgTime, Status FROM MAILBOX WHERE Receiver = '$userName' AND Status IN (1,2,5,6) ORDER BY MsgTime DESC";
-	$result = mysqli_query($link,$q);
-	if(mysqli_num_rows($result) > 0) {
-		while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
+	$result = pg_query($link,$q);
+	if(pg_num_rows($result) > 0) {
+		while ($row = pg_fetch_array($result, PGSQL_NUM)) {
 			if ($row[4] == 1 || $row[4] == 5) {
 				echo '<tr class="">                  	       
                     <td width="20%"><form action="viewMessage.php" method="post">
@@ -88,16 +88,13 @@ require('./includes/message_tab.inc.php');
 	if(isset($_POST['delete'])){
 		$id = $_POST['msgID'];
 		$query = "UPDATE MAILBOX SET Status = CASE Status WHEN 1 THEN 3 WHEN 2 THEN 4 WHEN 5 THEN 7 WHEN 6 THEN 7 END WHERE MessageID='$id'";
-    	mysqli_query($link, $query);
+    	pg_query($link, $query);
     	header("Location:inbox.php"); 
     }
 
-	mysqli_close($link);
+	pg_close($link);
  ?>
 </table>
-
-
-
 
 <?php
 require('./includes/footer.inc.php');

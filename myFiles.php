@@ -38,22 +38,22 @@ if (isset($_POST['submit'])) {
 	$sharing = $_POST['sharing'];
 	$file_id = $_POST['file_id'];
 	$status1 = $_POST['status'];
-	echo $file_id;
+	//echo $file_id;
 
 	require('./includes/mysql_connect.inc.php'); 
 	if ($sharing == 'private') {
-		echo "PRIVATE";
-		echo $status1;
+		//echo "PRIVATE";
+		//echo $status1;
 		$query = "UPDATE FILE SET Status='0' WHERE 	FileID = '$file_id'";
-		$result = mysqli_query($link, $query);
+		$result = pg_query($link, $query);
 	}
 	else {
-		echo "Public";
-		echo $status1;
+		//echo "Public";
+		//echo $status1;
 		$query = "UPDATE FILE SET Status='1' WHERE 	FileID = '$file_id'";
-		$result = mysqli_query($link, $query);
+		$result = pg_query($link, $query);
 	}
-	mysqli_close($link);
+	pg_close($link);
 	header("Location:myFiles.php"); 
 }
 

@@ -43,11 +43,11 @@ if (isset($_POST['search'])) {
         			WHERE SHAREDFILES.ClubID ='$clubID' AND FILE.Filename = '$search' OR caption REGEXP '[[:<:]]" .$search. "[[:>:]]'
         			AND SHAREDFILES.FileID = FILE.FileID";
 
-        $result = mysqli_query($link, $query);
+        $result = pg_query($link, $query);
 
 
-        if (mysqli_num_rows($result) !=0) {
-	        while($row = mysqli_fetch_array($result, MYSQL_NUM)){
+        if (pg_num_rows($result) !=0) {
+	        while($row = pg_fetch_array($result, PGSQL_NUM)){
 				$cap = $row[0];
 		        $name = $row[1];
 		        $file = base64_encode($row[2]);
@@ -82,13 +82,6 @@ if (isset($_POST['search'])) {
 ?>
 
 
-
-
-
-
-
-
-
 <h1> Shared files </h1>
  <table class="table table-striped table-condensed table-hover row-clickable" >
         <tr width='100%' class="message-header" >
@@ -102,9 +95,9 @@ if (isset($_POST['search'])) {
         	require('./includes/mysql_connect.inc.php');
         	$query = "SELECT FILE.Caption, FILE.Filename, FILE.Data, FILE.Type, FILE.FileID, FILE.Owner FROM SHAREDFILES,FILE 
         			WHERE SHAREDFILES.ClubID ='$clubID' AND SHAREDFILES.FileID = FILE.FileID";
-        	$result = mysqli_query($link, $query);
+        	$result = pg_query($link, $query);
 
-    		while($row = mysqli_fetch_array($result, MYSQL_NUM)){
+    		while($row = pg_fetch_array($result, PGSQL_NUM)){
     			$cap = $row[0];
 		        $name = $row[1];
 		        $file = base64_encode($row[2]);
@@ -117,7 +110,6 @@ if (isset($_POST['search'])) {
 		           echo ' <td width="10%"><form action="viewPDF.php" method="post"  target="_blank">
                     <input type="hidden" name="file"  value="'.$file.'"> 
                     <button class="button-link" type="submit"><img src="./thumbnails/pdfthumb.png" height="50"/></button></form></td>';
-		            
 		        }
 		        else {
 		             echo ' <td width="10%"><form action="viewImage.php" method="post"  target="_blank">

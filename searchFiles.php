@@ -16,9 +16,9 @@ function displaySearchFile($search){
     $userName = $_SESSION['userName'];
     //$query = "SELECT * FROM FILE WHERE Owner='$userName'";
     $query = "SELECT * FROM FILE WHERE Status='1' AND Filename = '$search' OR caption REGEXP '[[:<:]]" .$search. "[[:>:]]'";
-    $result = mysqli_query($link, $query);
-    if (mysqli_num_rows($result) !=0) {
-	    while($row = mysqli_fetch_array($result)){
+    $result = pg_query($link, $query);
+    if (pg_num_rows($result) !=0) {
+	    while($row = pg_fetch_array($result)){
 	        $cap = $row['Caption'];
 	        $uploader = $row['Owner'];
 	        $name = $row['Filename'];
@@ -47,7 +47,7 @@ function displaySearchFile($search){
 		echo '<button type="button" class="btn btn-danger">No files found';
 	}
 
-    mysqli_close($link);   
+    pg_close($link);   
 }
 ?>
 

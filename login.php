@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$q = "SELECT Username FROM USERS WHERE Username ='$username' AND Password = MD5('$password')";
 		
 		//run the query
-		$result = mysqli_query($link,$q);
-		if (mysqli_num_rows($result) == 1) {
+		$result = pg_query($link,$q);
+		if (pg_num_rows($result) == 1) {
 			$_SESSION['userName'] = $username;
 
 			if ($username == "admin") {
@@ -34,13 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$_SESSION['userType'] = "user";
 			}	
 			
-			mysqli_close($link);
+			pg_close($link);
 			header("Location:inbox.php");
 		}
 		else {
 			echo '<button type="button" class="btn btn-danger center-block">Invalid username/password combination </button>';
 		}
-		mysqli_close($link);
+		pg_close($link);
 	}
 	
 	else {

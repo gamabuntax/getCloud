@@ -2,15 +2,42 @@ CREATE TABLE USERS(FullName VARCHAR(50) not null, Username VARCHAR(30) not null 
 
 CREATE TABLE MAILBOX( MessageID BIGINT unsigned not null auto_increment primary key, Subject CHAR(100), MsgTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null , MsgText MEDIUMTEXT, Sender VARCHAR(30) not null, Receiver VARCHAR(30) not null, Status INT not null)ENGINE=InnoDB;
 
+//postgres
+CREATE SEQUENCE mail_id_seq;
+
+CREATE TABLE MAILBOX( MessageID BIGINT not null default nextVal('mail_id_seq') primary key, Subject CHAR(100), MsgTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null , MsgText TEXT, Sender VARCHAR(30) not null, Receiver VARCHAR(30) not null, Status INT not null);
+
+ALTER SEQUENCE mail_id_seq owned by MAILBOX.MessageID;
+
+////////////////////////
 CREATE TABLE CLUB(ClubID BIGINT unsigned not null auto_increment primary key, ClubName VARCHAR(50) not null, Description TEXT not null, ProfileImage LONGBLOB, Status INT, Username VARCHAR(30))ENGINE=InnoDB;
 
-CREATE TABLE MEMBER(Username VARCHAR(30) not null, ClubID BIGINT unsigned not null, Privilage INT not null, Status INT not null, CONSTRAINT uniq UNIQUE(Username, ClubID), FOREIGN KEY(Username) REFERENCES USERS(Username) ON DELETE CASCADE, FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID)) ENGINE=InnoDB; 
+//postgres
+CREATE SEQUENCE club_id_seq;
+
+CREATE TABLE CLUB(ClubID BIGINT not null default nextVal('club_id_seq') primary key, ClubName VARCHAR(50) not null, Description TEXT not null, ProfileImage BYTEA, Status INT, Username VARCHAR(30));
+
+ALTER SEQUENCE club_id_seq owned by CLUB.ClubID;
+
+
+
+CREATE TABLE MEMBER(Username VARCHAR(30) not null, ClubID BIGINT not null, Privilage INT not null, Status INT not null, CONSTRAINT uniq UNIQUE(Username, ClubID), FOREIGN KEY(Username) REFERENCES USERS(Username) ON DELETE CASCADE, FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID)) ENGINE=InnoDB; 
 
 //Status: 0= private ; 1 = public
 CREATE TABLE FILE(FileID BIGINT unsigned not null auto_increment primary key, Filename VARCHAR(30) not null, Caption VARCHAR(255) not null, Data LONGBLOB not null, Type VARCHAR(32) not null, Status INT not null, Owner VARCHAR(30) not null, FOREIGN KEY(Owner) REFERENCES USERS(Username) ON DELETE CASCADE)ENGINE=InnoDB;
 
+
+//postgres
+CREATE SEQUENCE file_id_seq;
+
+CREATE TABLE FILE(FileID BIGINT not null default nextVal('file_id_seq') primary key, Filename VARCHAR(30) not null, Caption VARCHAR(255) not null, Data BYTEA not null, Type VARCHAR(32) not null, Status INT not null, Owner VARCHAR(30) not null, FOREIGN KEY(Owner) REFERENCES USERS(Username) ON DELETE CASCADE);
+
+ALTER SEQUENCE file_id_seq owned by FILE.FileID;
+
+
+
 //shared files for clubs
-CREATE TABLE SHAREDFILES(FileID BIGINT unsigned not null, ClubID BIGINT unsigned not null, CONSTRAINT uniq UNIQUE(FileID, ClubID), FOREIGN KEY(FileID) REFERENCES FILE(FileID) ON DELETE CASCADE, FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB;
+CREATE TABLE SHAREDFILES(FileID BIGINT unsigned not null, ClubID BIGINT unsigned not null, CONSTRAINT uniq1 UNIQUE(FileID, ClubID), FOREIGN KEY(FileID) REFERENCES FILE(FileID) ON DELETE CASCADE, FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB;
 
 SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE '%lake%' OR Caption LIKE '%purple%';
 

@@ -39,9 +39,9 @@ require('./includes/admin_tab.inc.php');
 <?php
 	require('./includes/mysql_connect.inc.php');
 	$q = "SELECT Username, ClubName, Description, ClubID, ProfileImage FROM CLUB WHERE Status=1";
-	$result = mysqli_query($link,$q);
-	if(mysqli_num_rows($result) > 0) {
-		while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
+	$result = pg_query($link,$q);
+	if(pg_num_rows($result) > 0) {
+		while ($row = pg_fetch_array($result, PGSQL_NUM)) {
             $file = base64_encode($row[4]);
 			echo '<tr>
 
@@ -67,9 +67,9 @@ require('./includes/admin_tab.inc.php');
 		$id = $_POST['id'];
 		$receiver = $_POST['requestName'];
 		$query = "UPDATE CLUB SET Status = 2 WHERE ClubID = '$id'";
-    	mysqli_query($link, $query);
+    	pg_query($link, $query);
     	$query = "INSERT INTO MEMBER (Username, ClubID, Privilage, Status) VALUES ('$receiver', '$id', '1', '0')";
-    	mysqli_query($link, $query);
+    	pg_query($link, $query);
     	header("Location:club_admin.php"); 
     }
 
@@ -82,9 +82,9 @@ require('./includes/admin_tab.inc.php');
 		$subject = "Club request status on ". $title;
 		$message = "Sorry your request has been denied";
 		$query = "DELETE FROM CLUB WHERE ClubID = '$id'";
-		mysqli_query($link, $query);
+		pg_query($link, $query);
 		$query ="INSERT INTO MAILBOX (Subject, MsgTime, MsgText, Sender, Receiver,Status) VALUES ('$subject', NOW(), '$message', '$userName', '$receiver', '5')";
-    	mysqli_query($link, $query);
+    	pg_query($link, $query);
     	header("Location:club_admin.php"); 
     }
 
@@ -92,7 +92,7 @@ require('./includes/admin_tab.inc.php');
 
 
 
-mysqli_close($link);
+pg_close($link);
 ?>
 
 
@@ -120,9 +120,9 @@ mysqli_close($link);
 <?php
     require('./includes/mysql_connect.inc.php'); 
     $q = "SELECT ClubName, Description, ClubID, ProfileImage FROM CLUB WHERE Status=2";
-    $result = mysqli_query($link,$q);
-    if(mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
+    $result = pg_query($link,$q);
+    if(pg_num_rows($result) > 0) {
+        while ($row = pg_fetch_array($result, PGSQL_NUM)) {
             $file = base64_encode($row[3]);
             echo '<tr>
 

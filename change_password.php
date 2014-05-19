@@ -21,7 +21,7 @@ else {
 			if (strcmp($password,$password_c) == 0) {
 				require('./includes/mysql_connect.inc.php');
 				$q = "UPDATE USERS SET Password = MD5('$password') WHERE Username ='$userName'";
-				$result = mysqli_query($link, $q);
+				$result = pg_query($link, $q);
 				echo '<button type="button" class="btn btn-success center-block">You changed your password sucessfully</button>';
 			}
 			else {

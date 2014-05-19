@@ -3,7 +3,7 @@
 //handle the uploading file
 function upload($file){
     require('./includes/mysql_connect.inc.php');
-    $escapedfile = mysqli_real_escape_string($link, $file);
+    $escapedfile = pg_escape_string($link, $file);
     $name = $_POST['name'];
     $caption = $_POST['caption'];
     $user = $_SESSION['userName'];
@@ -14,8 +14,8 @@ function upload($file){
 
     $query = "INSERT INTO FILE(Filename, Caption, Data, type, Status, Owner) 
                     VALUES('$name', '$caption', '$escapedfile', '$type', '$status', '$user')"; 
-    $result = mysqli_query( $link, $query);
-    mysqli_close($link);
+    $result = pg_query( $link, $query);
+    pg_close($link);
     return $result;
 }
 
@@ -23,9 +23,9 @@ function displayFile($query){
     require('./includes/mysql_connect.inc.php');
     $userName = $_SESSION['userName'];
     //$query = "SELECT * FROM FILE WHERE Owner='$userName'";
-    $result = mysqli_query($link, $query);
+    $result = pg_query($link, $query);
 
-    while($row = mysqli_fetch_array($result)){
+    while($row = pg_fetch_array($result)){
         $cap = $row['Caption'];
         $name = $row['Filename'];
         $file = base64_encode($row['Data']);
@@ -66,7 +66,7 @@ function displayFile($query){
             </form></td>
           </tr>";       
    } 
-    mysqli_close($link);   
+    pg_close($link);   
 }
 
 ?>

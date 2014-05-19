@@ -9,8 +9,10 @@ if (isset($_POST['update_name'])) {
 		$clubID = $_POST['ClubID'];
 		require('./includes/mysql_connect.inc.php');
 		$q = "UPDATE CLUB SET ClubName = '$club_name' WHERE ClubID='$clubID'";
-		$result = mysqli_query($link,$q);
-		mysqli_close($link);
+		//$result = mysqli_query($link,$q);
+		$result = pg_query($link,$q);
+		//mysqli_close($link);
+		pg_close($link);
 		header("Location:moderator.php?ClubID=" . $_POST['ClubID']);
 	}
 
@@ -25,8 +27,10 @@ if (isset($_POST['update_desc'])) {
 		$clubID = $_POST['ClubID'];
 		require('./includes/mysql_connect.inc.php');
 		$q = "UPDATE CLUB SET Description = '$description' WHERE ClubID='$clubID'";
-		$result = mysqli_query($link,$q);
-		mysqli_close($link);
+		//$result = mysqli_query($link,$q);
+		$result = pg_query($link,$q);
+		//mysqli_close($link);
+		pg_close($link);
 		header("Location:moderator.php?ClubID=" . $_POST['ClubID']);
 	}
 
@@ -43,10 +47,13 @@ if (isset($_POST['update_img'])) {
 			if (in_array($_FILES['file']['type'], $allowed)) {
 				$file = file_get_contents($_FILES['file']['tmp_name']);
 			 	require('./includes/mysql_connect.inc.php');
-			 	$escapedfile = mysqli_real_escape_string($link, $file);
+			 	//$escapedfile = mysqli_real_escape_string($link, $file);
+			 	$escapedfile = pg_escape_string($link, $file);
 			 	$q = "UPDATE CLUB SET ProfileImage = '$escapedfile' WHERE ClubID='$clubID'";
-			 	$result = mysqli_query($link,$q);
-				mysqli_close($link);
+			 	//$result = mysqli_query($link,$q);
+			 	$result = pg_query($link,$q);
+				//mysqli_close($link);
+				pg_close($link);
 				header("Location:moderator.php?ClubID=" . $_POST['ClubID']);
 			}
 

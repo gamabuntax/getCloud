@@ -29,14 +29,13 @@ echo '<h1>' . $clubName . '</h1>';
                 </td>
             </tr>
 
-
 <?php
 	
 	require('./includes/mysql_connect.inc.php');
 	$q = "SELECT MEMBER.Username, MEMBER.Privilage FROM MEMBER WHERE Status=0 and ClubID = '$clubID'";
-	$result = mysqli_query($link,$q);
-	if(mysqli_num_rows($result) > 0) {
-	    while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
+	$result = pg_query($link,$q);
+	if(pg_num_rows($result) > 0) {
+	    while ($row = pg_fetch_array($result, PGSQL_NUM)) {
 	    	if ($row[1] == 0) {
 	    		$status = "Member";
 	    	}
@@ -64,9 +63,9 @@ echo '<h1>' . $clubName . '</h1>';
 		$clubID = $_POST['id'];
 
 		$q = "UPDATE MEMBER SET  Privilage= 0 WHERE ClubID = '$clubID' AND Privilage =1";
-		$result = mysqli_query($link,$q);
+		$result = pg_query($link,$q);
 		$q = "UPDATE MEMBER SET Privilage=1 WHERE ClubID = '$clubID' AND Username = '$member'";
-		$result = mysqli_query($link,$q);
+		$result = pg_query($link,$q);
 		header("Location:club_admin.php");
 
 	}

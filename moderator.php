@@ -26,9 +26,9 @@ require('./includes/view_club_tab.inc.php');
 <?php
 	require('./includes/mysql_connect.inc.php');
 	$q = "SELECT Username  FROM MEMBER WHERE ClubID = '$clubID' and Status= 2";
-	$result = mysqli_query($link,$q);
-	if(mysqli_num_rows($result) > 0) {
-		while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
+	$result = pg_query($link,$q);
+	if(pg_num_rows($result) > 0) {
+		while ($row = pg_fetch_array($result, PGSQL_NUM)) {
 			echo '<tr>
             <td width="10%">' . $row[0] . '</td>
             <td width="10%"><form action="moderator.php" method="post">
@@ -42,11 +42,11 @@ require('./includes/view_club_tab.inc.php');
 	if (isset($_POST['accept'])) {
 		$requestName = $_POST['requestName'];
 		$q = "UPDATE MEMBER SET Status = 0 WHERE ClubID='$clubID' AND Username ='$requestName'";
-		$result = mysqli_query($link,$q);
-		mysqli_close($link);
+		$result = pg_query($link,$q);
+		pg_close($link);
 		header("Location:moderator.php?ClubID=" . $_POST['ClubID']);
 	}
-	mysqli_close($link);
+	pg_close($link);
 ?>
 
 </table>
@@ -71,9 +71,9 @@ require('./includes/view_club_tab.inc.php');
 
 	require('./includes/mysql_connect.inc.php');
 	$q = "SELECT Username, Status  FROM MEMBER WHERE ClubID = '$clubID' and Status != 2 and Privilage = 0";
-	$result = mysqli_query($link,$q);
-	if(mysqli_num_rows($result) > 0) {
-		while ($row = mysqli_fetch_array($result, MYSQL_NUM)) {
+	$result = pg_query($link,$q);
+	if(pg_num_rows($result) > 0) {
+		while ($row = pg_fetch_array($result, PGSQL_NUM)) {
 			if ($row[1] == 0) {
 				$memberStatus = "Active";
 			}
@@ -116,11 +116,11 @@ require('./includes/view_club_tab.inc.php');
 			$q = "DELETE FROM MEMBER WHERE ClubID = '$clubID' AND Username = '$memberName'";
 		}
 
-		$result = mysqli_query($link,$q);
-		mysqli_close($link);
+		$result = pg_query($link,$q);
+		pg_close($link);
 		header("Location:moderator.php?ClubID=" . $_POST['ClubID']);
 	}
-	mysqli_close($link);
+	pg_close($link);
 ?>
 
 
@@ -135,16 +135,16 @@ require('./includes/view_club_tab.inc.php');
 			require('./includes/mysql_connect.inc.php');
 			
 			$q = "SELECT Username  FROM MEMBER WHERE ClubID = '$clubID' and Status= 0 and Privilage=0";
-			$result = mysqli_query($link,$q);
+			$result = pg_query($link,$q);
 
-			while ($member = mysqli_fetch_array($result, MYSQL_NUM)) {
+			while ($member = pg_fetch_array($result, PGSQL_NUM)) {
 				$q = "INSERT INTO MAILBOX (Subject, MsgTime, MsgText, Sender, Receiver,Status) VALUES ('$subject', NOW(), '$message', '$userName', '$member[0]', '5')";
-				$result_message = mysqli_query($link,$q);
+				$result_message = pg_query($link,$q);
 
 				echo '<button type="button" class="btn btn-success"> Sucessfully end messages to all members</button>';
 			}
 			
-			mysqli_close($link);
+			pg_close($link);
 		}
 		else {
 			echo '<button type="button" class="btn btn-danger">Please enter subject/message</button>';

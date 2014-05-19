@@ -51,17 +51,17 @@ require('./includes/club_tab.inc.php');
 		if ($valid_val[0] == true && $valid_val[1] == true) {
 			 $file = file_get_contents($_FILES['file']['tmp_name']);
 			 require('./includes/mysql_connect.inc.php');
-			 $escapedfile = mysqli_real_escape_string($link, $file);
+			 $escapedfile = pg_escape_string($link, $file);
 			 $q = 'SELECT Username FROM USERS WHERE Status= "1"';
-			 $result = mysqli_query($link,$q);
-			 while ($admin = mysqli_fetch_array($result, MYSQL_NUM)) {
+			 $result = pg_query($link,$q);
+			 while ($admin = pg_fetch_array($result, PGSQL_NUM)) {
 				$q = "INSERT INTO MAILBOX (Subject, MsgTime, MsgText, Sender, Receiver,Status) VALUES ('$subject', NOW(), '$message', '$userName', '$admin[0]', '5')";
-				$result_message = mysqli_query($link,$q);
+				$result_message = pg_query($link,$q);
 			}
 			$q = "INSERT INTO CLUB (ClubName, Description, Status, Username, ProfileImage) VALUES ('$clubName', '$description','1', '$userName', '$escapedfile')";
-			$result = mysqli_query($link,$q);
+			$result = pg_query($link,$q);
 			echo '<button type="button" class="btn btn-success center-block">Request club successfuly</button>';
-			mysqli_close($link);
+			pg_close($link);
 		}
 	}
 ?>
