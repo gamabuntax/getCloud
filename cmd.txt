@@ -10,7 +10,7 @@ CREATE TABLE MEMBER(Username VARCHAR(30) not null, ClubID BIGINT unsigned not nu
 CREATE TABLE FILE(FileID BIGINT unsigned not null auto_increment primary key, Filename VARCHAR(30) not null, Caption VARCHAR(255) not null, Data LONGBLOB not null, Type VARCHAR(32) not null, Status INT not null, Owner VARCHAR(30) not null, FOREIGN KEY(Owner) REFERENCES USERS(Username) ON DELETE CASCADE)ENGINE=InnoDB;
 
 //shared files for clubs
-CREATE TABLE SHAREDFILES(FileID BIGINT unsigned not null, ClubID BIGINT unsigned not null, CONSTRAINT uniq UNIQUE(FileID, ClubID), FOREIGN KEY(FileID) REFERENCES FILE(FileID), FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB;
+CREATE TABLE SHAREDFILES(FileID BIGINT unsigned not null, ClubID BIGINT unsigned not null, CONSTRAINT uniq UNIQUE(FileID, ClubID), FOREIGN KEY(FileID) REFERENCES FILE(FileID) ON DELETE CASCADE, FOREIGN KEY(ClubID) REFERENCES CLUB(ClubID))ENGINE=InnoDB;
 
 SELECT PhotoName, Caption FROM PHOTOS WHERE PhotoName='internet' OR Caption LIKE '%lake%' OR Caption LIKE '%purple%';
 

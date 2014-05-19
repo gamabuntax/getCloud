@@ -1,8 +1,6 @@
-  <?php
-ob_start();
+<?php ob_start();
 session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -46,7 +44,7 @@ session_start();
           <ul class="nav navbar-nav">
        <!-- message -->
        <li <?php if ($currentPage == 'inbox.php' || $currentPage == 'outbox.php' || $currentPage == 'compose.php' ) { echo 'class="active"';} ?>><a href="./inbox.php">Message</a></li>
-      <li <?php if ($currentPage == 'myFiles.php') { echo 'class="active"';} ?>><a href="./myFiles.php">My files</a></li>
+      <li <?php if ($currentPage == 'myFiles.php' || $currentPage == 'searchFiles.php') { echo 'class="active"';} ?>><a href="./myFiles.php">My files</a></li>
            
       <?php
         require('mysql_connect.inc.php');
@@ -60,7 +58,7 @@ session_start();
           </ul>
         <?php } else { ?>
 
-           <li><a href="./myclubs.php">My clubs</a></li>
+           <li <?php if ($currentPage == 'myclubs.php' || $currentPage == 'clubs.php' || $currentPage == 'club_request.php') { echo 'class="active"';} ?>><a href="./myclubs.php">My clubs</a></li>
           
           </ul>
            <?php } ?>

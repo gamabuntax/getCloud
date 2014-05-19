@@ -1,4 +1,4 @@
-    <?php 
+<?php 
 $page_title = 'getCloud | Outbox';
 require('./includes/header.inc.php');
 

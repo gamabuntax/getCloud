@@ -7,8 +7,9 @@ function upload($file){
     $name = $_POST['name'];
     $caption = $_POST['caption'];
     $user = $_SESSION['userName'];
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $type = finfo_file($finfo, $_FILES['file']['tmp_name']);
+    //$finfo = finfo_open(FILEINFO_MIME_TYPE);
+    //$type = finfo_file($finfo, $_FILES['file']['tmp_name']);
+    $type = $_FILES['file']['type'];
     $status = 0;
 
     $query = "INSERT INTO FILE(Filename, Caption, Data, type, Status, Owner) 

@@ -9,10 +9,8 @@
 		header("Location:register.php");
 	}
 ?>
-
 <?php
 require('./includes/file_function.inc.php');
-
 require('./includes/file_tab.inc.php');
 require('./includes/upload_form.inc.php'); 
 

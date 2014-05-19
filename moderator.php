@@ -168,8 +168,6 @@ require('./includes/view_club_tab.inc.php');
 	<input type="reset" value="Reset"  class="btn btn-default">
 </form>
 </div>
-<br>
-<br>
 
 
 <?php
