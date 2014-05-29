@@ -49,9 +49,9 @@ session_start();
       <?php
         require('mysql_connect.inc.php');
         $q = "SELECT Status From USERS WHERE Username ='" . $_SESSION['userName'] . "'";
-        $result = mysqli_query($link,$q);
-        $row = mysqli_fetch_array($result, MYSQL_NUM);
-        mysqli_close($link);
+        $result = pg_query($link,$q);
+        $row = pg_fetch_array($result, PGSQL_NUM);
+        pg_close($link);
 
         if ($row[0] == 1) { ?>
           <li <?php if ($currentPage == 'club_admin.php') { echo 'class="active"';} ?>><a href="./club_admin.php">Club</a></li>
