@@ -47,7 +47,7 @@ if (isset($_POST['search'])) {
 
 
         if (mysqli_num_rows($result) !=0) {
-	        while($row = mysqli_fetch_array($result, mysqliSQL_NUM)){
+	        while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
 				$cap = $row[0];
 		        $name = $row[1];
 		        $file = base64_encode($row[2]);
@@ -97,7 +97,7 @@ if (isset($_POST['search'])) {
         			WHERE SHAREDFILES.ClubID ='$clubID' AND SHAREDFILES.FileID = FILE.FileID";
         	$result = mysqli_query($link, $query);
 
-    		while($row = mysqli_fetch_array($result, mysqliSQL_NUM)){
+    		while($row = mysqli_fetch_array($result, MYSQLI_NUM)){
     			$cap = $row[0];
 		        $name = $row[1];
 		        $file = base64_encode($row[2]);

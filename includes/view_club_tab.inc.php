@@ -12,9 +12,9 @@ else {}
 require('./includes/mysql_connect.inc.php');
 $q = "SELECT CLUB.ClubName, CLUB.Description, CLUB.ProfileImage FROM CLUB WHERE ClubID ='$clubID'";
 //$result = mysqli_query($link,$q);
-$result = pg_query($link,$q);
+$result = mysqli_query($link,$q);
 //$row = mysqli_fetch_array($result, MYSQL_NUM);
-$row = pg_fetch_array($result, PGSQL_NUM);
+$row = mysqli_fetch_array($result, MYSQLI_NUM);
 $file = base64_encode($row[2]);
    echo '<div class="float-left"><img src="data:image;base64,'.$file.'" height="100" width=""></div>';
    echo '<h2>' . $row[0] . '</h2>';
@@ -24,12 +24,12 @@ $file = base64_encode($row[2]);
 
 $q = "SELECT Privilage FROM MEMBER WHERE ClubID ='$clubID' AND Username = '$userName' ";
 //$result = mysqli_query($link,$q);
-$result = pg_query($link,$q);
+$result = mysqli_query($link,$q);
 //$row = mysqli_fetch_array($result, MYSQL_NUM);
-$row = pg_fetch_array($result, PGSQL_NUM);
+$row = mysqli_fetch_array($result, MYSQLI_NUM);
 
 //mysqli_close($link);
-pg_close($link);
+mysqli_close($link);
 
 if ($row[0] == 0 && $currentPage == "moderator.php") {
      header("Location:myclubs.php");
