@@ -39,15 +39,15 @@ require('./includes/club_tab.inc.php');
  <?php
  	require('./includes/mysql_connect.inc.php');
  	$q = "SELECT CLUB.ClubName, CLUB.Description, CLUB.ClubID, CLUB.ProfileImage FROM CLUB WHERE CLUB.Status = 2";
- 	$result = pg_query($link,$q);
- 	if(pg_num_rows($result) > 0) {
-		while ($row = pg_fetch_array($result, PGSQL_NUM)) {
+ 	$result = mysqli_query($link,$q);
+ 	if(mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
              $memberStatus = "";
             $file = base64_encode($row[3]);
             $q1 = "SELECT MEMBER.Status FROM MEMBER WHERE MEMBER.Username = '$userName' AND MEMBER.ClubID = '$row[2]'";
-            $result1 = pg_query($link,$q1);
-            if(pg_num_rows($result1) > 0) {
-                $row1 = pg_fetch_array($result1, PGSQL_NUM);
+            $result1 = mysqli_query($link,$q1);
+            if(mysqli_num_rows($result1) > 0) {
+                $row1 = mysqli_fetch_array($result1, MYSQLI_NUM);
                 if ($row1[0] == 0) {
                     $memberStatus = "Active";
                 }
@@ -83,11 +83,11 @@ require('./includes/club_tab.inc.php');
     if (isset($_POST['request'])) {
         $clubID = $_POST['id'];
         $q = "INSERT INTO MEMBER (Username,ClubID,Privilage, Status) VALUES ('$userName', '$clubID', '0', '2')";
-        $result  = pg_query($link,$q);
-        pg_close($link);
+        $result  = mysqli_query($link,$q);
+        mysqli_close($link);
         header("Location:clubs.php");
     }
-   pg_close($link);
+   mysqli_close($link);
 ?>
 
 </table>

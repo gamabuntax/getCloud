@@ -31,9 +31,9 @@ require('./includes/admin_tab.inc.php');
 	require('./includes/mysql_connect.inc.php');
 	$q = "SELECT Username FROM USERS WHERE Status=0";
 	//$result = mysqli_query($link,$q);
-	$result = pg_query($link,$q);
-	if(pg_num_rows($result) > 0) {
-		while ($row = pg_fetch_array($result, PGSQL_NUM)) {
+	$result = mysqli_query($link,$q);
+	if(mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
 			echo '<tr>
 				<td width ="10%">' . $row[0] . '</td>
 
@@ -48,7 +48,7 @@ require('./includes/admin_tab.inc.php');
 	if (isset($_POST['remove'])) {
 		$user = $_POST['user'];
 		$q = "DELETE FROM USERS, FILE WHERE Username = '$user'";
-		$result = pg_query($link,$q);
+		$result = mysqli_query($link,$q);
 		header("Location:admin_manage_user.php");
 	}
 ?>

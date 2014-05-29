@@ -45,15 +45,15 @@ if (isset($_POST['submit'])) {
 		//echo "PRIVATE";
 		//echo $status1;
 		$query = "UPDATE FILE SET Status='0' WHERE 	FileID = '$file_id'";
-		$result = pg_query($link, $query);
+		$result = mysqli_query($link, $query);
 	}
 	else {
 		//echo "Public";
 		//echo $status1;
 		$query = "UPDATE FILE SET Status='1' WHERE 	FileID = '$file_id'";
-		$result = pg_query($link, $query);
+		$result = mysqli_query($link, $query);
 	}
-	pg_close($link);
+	mysqli_close($link);
 	header("Location:myFiles.php"); 
 }
 

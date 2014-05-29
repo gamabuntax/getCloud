@@ -1,6 +1,6 @@
 <?php ob_start();
 session_start();
-ini_set('memory_limit', '10M');
+//ini_set('memory_limit', '10M');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,9 +50,9 @@ ini_set('memory_limit', '10M');
       <?php
         require('mysql_connect.inc.php');
         $q = "SELECT Status From USERS WHERE Username ='" . $_SESSION['userName'] . "'";
-        $result = pg_query($link,$q);
-        $row = pg_fetch_array($result, PGSQL_NUM);
-        pg_close($link);
+        $result = mysqli_query($link,$q);
+        $row = mysqli_fetch_array($result, MYSQLI_NUM);
+        mysqli_close($link);
 
         if ($row[0] == 1) { ?>
           <li <?php if ($currentPage == 'club_admin.php') { echo 'class="active"';} ?>><a href="./club_admin.php">Club</a></li>

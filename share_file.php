@@ -24,9 +24,9 @@ require('./includes/view_club_tab.inc.php');
         <?php
         	require('./includes/mysql_connect.inc.php');
         	$query = "SELECT * FROM FILE WHERE Owner='$userName'";
-        	$result = pg_query($link, $query);
+        	$result = mysqli_query($link, $query);
 
-    		while($row = pg_fetch_array($result)){
+    		while($row = mysqli_fetch_array($result)){
     			$cap = $row['Caption'];
 		        $name = $row['Filename'];
 		        $file = base64_encode($row['Data']);
@@ -65,12 +65,12 @@ require('./includes/view_club_tab.inc.php');
 				require('./includes/mysql_connect.inc.php');
 				if ($sharing == 'share') {
 					$q = "INSERT INTO SHAREDFILES(FileID, ClubID) VALUES ('$file_id', '$clubID')";
-					$result = pg_query($link, $q);
+					$result = mysqli_query($link, $q);
 				}
 
 				else {
 					$q = "DELETE FROM SHAREDFILES WHERE FileID='$file_id' AND ClubID='$clubID'";
-					$result = pg_query($link, $q);
+					$result = mysqli_query($link, $q);
 				}
 				header("Location:share_file.php?ClubID=" . $_POST['ClubID']);
     		}

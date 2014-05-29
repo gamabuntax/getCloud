@@ -27,11 +27,11 @@ require('./includes/message_tab.inc.php');
 			//check for valid reciever username
 			$q = "SELECT Username FROM USERS WHERE Username ='$receiverID'";
 			//run the query
-			$result = pg_query($link,$q);
-			if (pg_num_rows($result) == 1) {
+			$result = mysqli_query($link,$q);
+			if (mysqli_num_rows($result) == 1) {
 				///////send message////////
 				$q = "INSERT INTO MAILBOX (Subject, MsgTime, MsgText, Sender, Receiver,Status) VALUES ('$subject', NOW(), '$message', '$userName', '$receiverID', '1')";
-				$result = pg_query($link,$q);
+				$result = mysqli_query($link,$q);
 			
 				//sleep(3);//seconds to wait..
 				
@@ -42,7 +42,7 @@ require('./includes/message_tab.inc.php');
 				echo '<button type="button" class="btn btn-danger center-block">Please enter a valid username </button>';
 			} 
 		
-		pg_close($link);
+		mysqli_close($link);
 		}
 		else {
 			echo '<button type="button" class="btn btn-danger center-block">Please enter username, subject and password </button>';		

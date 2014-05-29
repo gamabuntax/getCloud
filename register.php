@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         	//makeing the query
         	$q = "INSERT INTO USERS(FullName, Username, Password) VALUES('$fullname','$username', MD5('$password'))";
         
-        	$result = pg_query($link, $q);
+        	$result = mysqli_query($link, $q);
         	if ($result) {
         		echo '<button type="button" class="btn btn-success center-block">Register successfully</button>';
 			}
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			else {
 				echo '<button type="button" class="btn btn-danger center-block">Username is already taken</button>';
 			}
-        	pg_close($link);
+        	mysqli_close($link);
         }
         else {
         	echo '<button type="button" class="btn btn-danger center-block">Password confirmation does not match password</button>';

@@ -43,11 +43,11 @@ if (isset($_POST['search'])) {
         			WHERE SHAREDFILES.ClubID ='$clubID' AND FILE.Filename = '$search' OR caption REGEXP '[[:<:]]" .$search. "[[:>:]]'
         			AND SHAREDFILES.FileID = FILE.FileID";
 
-        $result = pg_query($link, $query);
+        $result = mysqli_query($link, $query);
 
 
-        if (pg_num_rows($result) !=0) {
-	        while($row = pg_fetch_array($result, PGSQL_NUM)){
+        if (mysqli_num_rows($result) !=0) {
+	        while($row = mysqli_fetch_array($result, mysqliSQL_NUM)){
 				$cap = $row[0];
 		        $name = $row[1];
 		        $file = base64_encode($row[2]);
@@ -95,9 +95,9 @@ if (isset($_POST['search'])) {
         	require('./includes/mysql_connect.inc.php');
         	$query = "SELECT FILE.Caption, FILE.Filename, FILE.Data, FILE.Type, FILE.FileID, FILE.Owner FROM SHAREDFILES,FILE 
         			WHERE SHAREDFILES.ClubID ='$clubID' AND SHAREDFILES.FileID = FILE.FileID";
-        	$result = pg_query($link, $query);
+        	$result = mysqli_query($link, $query);
 
-    		while($row = pg_fetch_array($result, PGSQL_NUM)){
+    		while($row = mysqli_fetch_array($result, mysqliSQL_NUM)){
     			$cap = $row[0];
 		        $name = $row[1];
 		        $file = base64_encode($row[2]);

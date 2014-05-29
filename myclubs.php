@@ -38,9 +38,9 @@ require('./includes/club_tab.inc.php');
  <?php
  	require('./includes/mysql_connect.inc.php');
  	$q = "SELECT CLUB.ClubName, CLUB.Description, CLUB.ClubID, CLUB.ProfileImage, MEMBER.Privilage FROM MEMBER, CLUB WHERE MEMBER.Username ='$userName' AND MEMBER.Status = '0' AND CLUB.ClubID = MEMBER.ClubID";
- 	$result = pg_query($link,$q);
- 	if(pg_num_rows($result) > 0) {
-		while ($row = pg_fetch_array($result, PGSQL_NUM)) {
+ 	$result = mysqli_query($link,$q);
+ 	if(mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
             $file = base64_encode($row[3]);
 
             if ($row[4] == 0) {
@@ -78,10 +78,10 @@ require('./includes/club_tab.inc.php');
     if (isset($_POST['request'])) {
         $clubID = $_POST['ClubID'];
         $q = "DELETE FROM MEMBER WHERE ClubID = '$clubID' AND Username = '$userName'";
-        $result = pg_query($link,$q);
+        $result = mysqli_query($link,$q);
         header("Location:myclubs.php");
     }
-pg_close($link);
+mysqli_close($link);
 ?>
 
 
