@@ -47,8 +47,8 @@ require('./includes/message_tab.inc.php');
                     <input type="hidden" name="msgID"  value="'.$row[0].'">	
                     <button class="button-link" type="submit">' . $row[2]. '</button></form></td>
                     
-                    <td width="20%"><form action="viewMessage.php" method="post">
-                    <input type="hidden" name="msgID"  vaMYSQLI_NUM].'">	
+                   <td width="20%"><form action="viewMessage.php" method="post">
+                    <input type="hidden" name="msgID"  value="'.$row[0].'"> 
                     <button class="button-link" type="submit">' . $row[3]. '</button></form></td>
 
                     <td width="15%"><form action="outbox.php" method="post">
