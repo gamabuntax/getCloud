@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		else {
 			echo '<button type="button" class="btn btn-danger center-block">Invalid username/password combination </button>';
 		}
-		pg_close($link);
+		//pg_close($link);
 	}
 	
 	else {

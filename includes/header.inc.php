@@ -1,6 +1,6 @@
 <?php ob_start();
 session_start();
-//ini_set('memory_limit', '-1');
+ini_set('memory_limit', '10M');
 ?>
 <!DOCTYPE html>
 <html lang="en">
